@@ -14,7 +14,7 @@ struct HeaderBarTitle: View {
     var body: some View {
         Group {
             Text(title)
-                .font(.system(size: size, weight: .black, design: .default))
+                .font(.system(size: size, weight: .black, design: .rounded))
                 .foregroundColor(.white)
                 .fontWeight(.black)
                 .minimumScaleFactor(0.5)
@@ -22,9 +22,9 @@ struct HeaderBarTitle: View {
                 .accessibility(identifier: title)
                 .shadow(radius: 1)
         }
-        .frame(maxWidth: .infinity, maxHeight: 100, alignment: .center)
+        .frame(maxWidth: .infinity, maxHeight: 150, alignment: .center)
         .background(Color.red)
-        .offset(y: -200)
+        .offset(y: 0)
     }
 }
 

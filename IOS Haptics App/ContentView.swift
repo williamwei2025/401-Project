@@ -9,53 +9,29 @@
 
 
     struct ContentView: View {
-        //@State var homescreen = false;
         var body: some View {
-            VStack (alignment: .center, spacing: 20){
-                HomeView();
-                    
-                }
-            }
-            
-    }
+            NavigationView{
+                VStack (alignment: .center, spacing: 100){
+                    HeaderBarTitle(title: "HAPTICS", size: 40)
+                        .offset(y:-100)
 
-    struct HomeView: View {
-        @State var homescreen = false;
-        var body: some View {
-            VStack (alignment: .center, spacing: 20){
-                HeaderBarTitle(title: "HAPTICS", size: 20)
-                if homescreen {
-                    InstructionView()
-                } else {
-                    Button("Instructions") {
-                        self.homescreen = true
+                    NavigationLink(destination: InstructionView()){
+                        Text("Instructions")
+                            .frame(width: 150, height: 100, alignment: .center)
+                            .background(Color.cyan)
+                            .cornerRadius(25)
+                            .foregroundColor(Color.white)
+                            .font(.system(size: 20, weight: .black, design: .rounded))
                     }
                 }
             }
-            .padding()
-            
-            
-            
+                        
         }
+
     }
+
+   
     
-    
-    struct InstructionView: View {
-        @State var instructions: String = "These are the instructions. "
-        var body: some View {
-            VStack (alignment: .center, spacing: 20){
-                HeaderBarTitle(title: "Instructions", size: 20)
-                TextField(
-                            "Family Name",
-                            text: $instructions
-                        )
-                
-            }
-            .padding()
-            
-            
-        }
-    }
     
     struct ContentView_Previews: PreviewProvider {
         static var previews: some View {

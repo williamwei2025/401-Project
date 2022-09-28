@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D8A0575628E4A25E005E0950 /* HeaderBarTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0575528E4A25E005E0950 /* HeaderBarTitle.swift */; };
+		D8A0575828E4A26B005E0950 /* InstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0575728E4A26B005E0950 /* InstructionsView.swift */; };
 		D8CEDEE428DEFA39002C992A /* IOS_Haptics_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CEDEE328DEFA39002C992A /* IOS_Haptics_AppApp.swift */; };
 		D8CEDEE628DEFA39002C992A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CEDEE528DEFA39002C992A /* ContentView.swift */; };
 		D8CEDEE828DEFA39002C992A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8CEDEE728DEFA39002C992A /* Assets.xcassets */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D8A0575528E4A25E005E0950 /* HeaderBarTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderBarTitle.swift; sourceTree = "<group>"; };
+		D8A0575728E4A26B005E0950 /* InstructionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionsView.swift; sourceTree = "<group>"; };
 		D8CEDEE028DEFA39002C992A /* IOS Haptics App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IOS Haptics App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8CEDEE328DEFA39002C992A /* IOS_Haptics_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOS_Haptics_AppApp.swift; sourceTree = "<group>"; };
 		D8CEDEE528DEFA39002C992A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -94,6 +98,8 @@
 		D8CEDEE228DEFA39002C992A /* IOS Haptics App */ = {
 			isa = PBXGroup;
 			children = (
+				D8A0575728E4A26B005E0950 /* InstructionsView.swift */,
+				D8A0575528E4A25E005E0950 /* HeaderBarTitle.swift */,
 				D8CEDEE328DEFA39002C992A /* IOS_Haptics_AppApp.swift */,
 				D8CEDEE528DEFA39002C992A /* ContentView.swift */,
 				D8CEDEE728DEFA39002C992A /* Assets.xcassets */,
@@ -257,6 +263,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8A0575628E4A25E005E0950 /* HeaderBarTitle.swift in Sources */,
+				D8A0575828E4A26B005E0950 /* InstructionsView.swift in Sources */,
 				D8CEDEE628DEFA39002C992A /* ContentView.swift in Sources */,
 				D8CEDEE428DEFA39002C992A /* IOS_Haptics_AppApp.swift in Sources */,
 			);
