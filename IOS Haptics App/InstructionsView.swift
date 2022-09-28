@@ -22,9 +22,10 @@ struct InstructionView: View {
                 
                 Text(instructions)
                     .multilineTextAlignment(.center)
-                    .frame(width: 35bac0, height: 400, alignment: .center)
+                    .frame(width: 350, height: 400, alignment: .center)
                     .background(Color.yellow)
                     .cornerRadius(50)
+                    .shadow(radius: 5)
                     .foregroundColor(Color.white)
                     .font(.system(size: 20, weight: .black, design: .rounded))
                 
