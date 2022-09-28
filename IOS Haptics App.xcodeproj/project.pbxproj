@@ -9,8 +9,9 @@
 /* Begin PBXBuildFile section */
 		D8A0575628E4A25E005E0950 /* HeaderBarTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0575528E4A25E005E0950 /* HeaderBarTitle.swift */; };
 		D8A0575828E4A26B005E0950 /* InstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0575728E4A26B005E0950 /* InstructionsView.swift */; };
+		D8A0575A28E4BA7E005E0950 /* MenuVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0575928E4BA7E005E0950 /* MenuVIew.swift */; };
 		D8CEDEE428DEFA39002C992A /* IOS_Haptics_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CEDEE328DEFA39002C992A /* IOS_Haptics_AppApp.swift */; };
-		D8CEDEE628DEFA39002C992A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CEDEE528DEFA39002C992A /* ContentView.swift */; };
+		D8CEDEE628DEFA39002C992A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CEDEE528DEFA39002C992A /* HomeView.swift */; };
 		D8CEDEE828DEFA39002C992A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8CEDEE728DEFA39002C992A /* Assets.xcassets */; };
 		D8CEDEEB28DEFA39002C992A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8CEDEEA28DEFA39002C992A /* Preview Assets.xcassets */; };
 		D8CEDEF528DEFA39002C992A /* IOS_Haptics_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CEDEF428DEFA39002C992A /* IOS_Haptics_AppTests.swift */; };
@@ -38,9 +39,10 @@
 /* Begin PBXFileReference section */
 		D8A0575528E4A25E005E0950 /* HeaderBarTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderBarTitle.swift; sourceTree = "<group>"; };
 		D8A0575728E4A26B005E0950 /* InstructionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionsView.swift; sourceTree = "<group>"; };
+		D8A0575928E4BA7E005E0950 /* MenuVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVIew.swift; sourceTree = "<group>"; };
 		D8CEDEE028DEFA39002C992A /* IOS Haptics App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IOS Haptics App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8CEDEE328DEFA39002C992A /* IOS_Haptics_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOS_Haptics_AppApp.swift; sourceTree = "<group>"; };
-		D8CEDEE528DEFA39002C992A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D8CEDEE528DEFA39002C992A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		D8CEDEE728DEFA39002C992A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8CEDEEA28DEFA39002C992A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D8CEDEF028DEFA39002C992A /* IOS Haptics AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "IOS Haptics AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,9 +103,10 @@
 				D8A0575728E4A26B005E0950 /* InstructionsView.swift */,
 				D8A0575528E4A25E005E0950 /* HeaderBarTitle.swift */,
 				D8CEDEE328DEFA39002C992A /* IOS_Haptics_AppApp.swift */,
-				D8CEDEE528DEFA39002C992A /* ContentView.swift */,
+				D8CEDEE528DEFA39002C992A /* HomeView.swift */,
 				D8CEDEE728DEFA39002C992A /* Assets.xcassets */,
 				D8CEDEE928DEFA39002C992A /* Preview Content */,
+				D8A0575928E4BA7E005E0950 /* MenuVIew.swift */,
 			);
 			path = "IOS Haptics App";
 			sourceTree = "<group>";
@@ -264,8 +267,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8A0575628E4A25E005E0950 /* HeaderBarTitle.swift in Sources */,
+				D8A0575A28E4BA7E005E0950 /* MenuVIew.swift in Sources */,
 				D8A0575828E4A26B005E0950 /* InstructionsView.swift in Sources */,
-				D8CEDEE628DEFA39002C992A /* ContentView.swift in Sources */,
+				D8CEDEE628DEFA39002C992A /* HomeView.swift in Sources */,
 				D8CEDEE428DEFA39002C992A /* IOS_Haptics_AppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

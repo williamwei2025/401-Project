@@ -1,5 +1,5 @@
     //
-    //  ContentView.swift
+    //  HomeView.swift
     //  IOS Haptics App
     //
     //  Created by user228516 on 9/24/22.
@@ -8,7 +8,7 @@
     import SwiftUI
 
 
-    struct ContentView: View {
+    struct HomeView: View {
         var body: some View {
             NavigationView{
                 VStack (alignment: .center, spacing: 100){
@@ -33,9 +33,9 @@
    
     
     
-    struct ContentView_Previews: PreviewProvider {
+    struct HomeView_Previews: PreviewProvider {
         static var previews: some View {
-            ContentView()
+            HomeView()
         }
     }
 
