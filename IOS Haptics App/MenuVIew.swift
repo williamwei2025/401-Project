@@ -12,14 +12,13 @@ struct MenuView: View{
     
     var body: some View {
         
-        NavigationView{
             VStack (alignment: .center, spacing: 20){
                 
                 HeaderBarTitle(title: "Menu", size: 40)
                     .offset(y:-100)
                 
                 
-                NavigationLink(destination: Image1View()){
+                NavigationLink(destination: YourViewControllerView()){
                     Text("Image 1")
                         .frame(width: 400, height: 100, alignment: .center)
                         .background(Color.purple)
@@ -44,17 +43,27 @@ struct MenuView: View{
                         .cornerRadius(25)
                         .foregroundColor(Color.white)
                         .font(.system(size: 20, weight: .black, design: .rounded))
-                }            }
-        }
-        
-    
-
-
+                }
+                
+            }
     }
+}
+
+struct YourViewControllerView: UIViewControllerRepresentable {
+
+    func makeUIViewController(context: Context) -> ViewController {
+        // this will work if you are not using Storyboards at all.
+        return ViewController()
+    }
+
+    func updateUIViewController(_ uiViewController: ViewController, context: Context) {
+        // update code
+    }
+
+}
     
     struct MenuView_Previews: PreviewProvider {
         static var previews: some View {
             MenuView()
         }
     }
-}

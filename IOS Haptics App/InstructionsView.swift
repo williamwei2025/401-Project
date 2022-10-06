@@ -14,7 +14,6 @@ struct InstructionView: View {
     
     var body: some View {
         
-        NavigationView{
             VStack (alignment: .center, spacing: 10){
                 
                 HeaderBarTitle(title: "Instructions", size: 40)
@@ -38,7 +37,7 @@ struct InstructionView: View {
                         .font(.system(size: 20, weight: .black, design: .rounded))
                 }
             }
-        }
+        
         
     
 
