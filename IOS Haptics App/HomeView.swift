@@ -18,7 +18,7 @@
                     NavigationLink(destination: InstructionView()){
                         Text("Instructions")
                             .frame(width: 150, height: 100, alignment: .center)
-                            .background(Color.cyan)
+                            .background(Color.blue)
                             .cornerRadius(25)
                             .foregroundColor(Color.white)
                             .font(.system(size: 20, weight: .black, design: .rounded))
