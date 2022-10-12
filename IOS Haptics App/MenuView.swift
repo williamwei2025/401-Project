@@ -27,7 +27,7 @@ struct MenuView: View{
                         .font(.system(size: 20, weight: .black, design: .rounded))
                 }
                 
-                NavigationLink(destination: MenuView()){
+                NavigationLink(destination: Image2View()){
                     Text("Image 2")
                         .frame(width: 400, height: 100, alignment: .center)
                         .background(Color.orange)
@@ -53,5 +53,5 @@ struct MenuView: View{
     struct MenuView_Previews: PreviewProvider {
         static var previews: some View {
             MenuView()
-        }
+        }	
     }

@@ -13,8 +13,8 @@ struct Image1View: View {
     
     var drag: some Gesture {
         DragGesture()
-            .onChanged { _ in  HapticManager.instance.impact(style: .light) }
-            .onEnded { _ in print("picture finished dragging") }
+            .onChanged { _ in  HapticManager.instance.impact(style: .medium) }
+            .onEnded { _ in print("drag detected: medium haptic output") }
     }
                 
     var body: some View {
@@ -25,13 +25,13 @@ struct Image1View: View {
                         .resizable()
                         .scaledToFit()
                         .onTapGesture {
-                            HapticManager.instance.impact(style: .heavy)
-                            	print("picture tapped, haptic output")
+                            HapticManager.instance.impact(style: .light)
+                            	print("tap detected: light haptic output")
                         }
                         .gesture(drag)
                         .onLongPressGesture(minimumDuration: 0.5, maximumDistance: 10) {
                             HapticManager.instance.impact(style: .medium)
-                            print("picture tapped and held")
+                            print("tap and hold detected: heavy haptic output")
                         }
             
                         
@@ -40,7 +40,7 @@ struct Image1View: View {
 
     }
 }
-
+	
 struct Image1View_Previews: PreviewProvider {
     static var previews: some View {
         Image1View()
