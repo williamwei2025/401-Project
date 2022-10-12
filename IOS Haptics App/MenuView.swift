@@ -18,7 +18,7 @@ struct MenuView: View{
                     .offset(y:-100)
                 
                 
-                NavigationLink(destination: YourViewControllerView()){
+                NavigationLink(destination: Image1View()){
                     Text("Image 1")
                         .frame(width: 400, height: 100, alignment: .center)
                         .background(Color.purple)
@@ -49,18 +49,6 @@ struct MenuView: View{
     }
 }
 
-struct YourViewControllerView: UIViewControllerRepresentable {
-
-    func makeUIViewController(context: Context) -> ViewController {
-        // this will work if you are not using Storyboards at all.
-        return ViewController()
-    }
-
-    func updateUIViewController(_ uiViewController: ViewController, context: Context) {
-        // update code
-    }
-
-}
     
     struct MenuView_Previews: PreviewProvider {
         static var previews: some View {

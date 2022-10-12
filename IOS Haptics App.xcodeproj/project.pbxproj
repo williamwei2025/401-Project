@@ -8,11 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		1816DCA228E8ADE8004A0F25 /* Image1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1816DCA128E8ADE8004A0F25 /* Image1View.swift */; };
-		1816DCA428E8AF00004A0F25 /* moo.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1816DCA328E8AF00004A0F25 /* moo.jpeg */; };
 		1816DCA628E8AF38004A0F25 /* moo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1816DCA528E8AF38004A0F25 /* moo2.png */; };
 		D8A0575628E4A25E005E0950 /* HeaderBarTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0575528E4A25E005E0950 /* HeaderBarTitle.swift */; };
 		D8A0575828E4A26B005E0950 /* InstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0575728E4A26B005E0950 /* InstructionsView.swift */; };
-		D8A0575A28E4BA7E005E0950 /* MenuVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0575928E4BA7E005E0950 /* MenuVIew.swift */; };
+		D8A0575A28E4BA7E005E0950 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0575928E4BA7E005E0950 /* MenuView.swift */; };
 		D8CEDEE428DEFA39002C992A /* IOS_Haptics_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CEDEE328DEFA39002C992A /* IOS_Haptics_AppApp.swift */; };
 		D8CEDEE628DEFA39002C992A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CEDEE528DEFA39002C992A /* HomeView.swift */; };
 		D8CEDEE828DEFA39002C992A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8CEDEE728DEFA39002C992A /* Assets.xcassets */; };
@@ -41,11 +40,10 @@
 
 /* Begin PBXFileReference section */
 		1816DCA128E8ADE8004A0F25 /* Image1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image1View.swift; sourceTree = "<group>"; };
-		1816DCA328E8AF00004A0F25 /* moo.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = moo.jpeg; path = ../../../Downloads/moo.jpeg; sourceTree = "<group>"; };
 		1816DCA528E8AF38004A0F25 /* moo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = moo2.png; path = ../../../Desktop/moo2.png; sourceTree = "<group>"; };
 		D8A0575528E4A25E005E0950 /* HeaderBarTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderBarTitle.swift; sourceTree = "<group>"; };
 		D8A0575728E4A26B005E0950 /* InstructionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionsView.swift; sourceTree = "<group>"; };
-		D8A0575928E4BA7E005E0950 /* MenuVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVIew.swift; sourceTree = "<group>"; };
+		D8A0575928E4BA7E005E0950 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		D8CEDEE028DEFA39002C992A /* IOS Haptics App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IOS Haptics App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8CEDEE328DEFA39002C992A /* IOS_Haptics_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOS_Haptics_AppApp.swift; sourceTree = "<group>"; };
 		D8CEDEE528DEFA39002C992A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -106,16 +104,15 @@
 		D8CEDEE228DEFA39002C992A /* IOS Haptics App */ = {
 			isa = PBXGroup;
 			children = (
-				D8A0575728E4A26B005E0950 /* InstructionsView.swift */,
-				D8A0575528E4A25E005E0950 /* HeaderBarTitle.swift */,
-				1816DCA128E8ADE8004A0F25 /* Image1View.swift */,
-				D8CEDEE328DEFA39002C992A /* IOS_Haptics_AppApp.swift */,
 				D8CEDEE528DEFA39002C992A /* HomeView.swift */,
+				D8A0575728E4A26B005E0950 /* InstructionsView.swift */,
+				D8A0575928E4BA7E005E0950 /* MenuView.swift */,
+				1816DCA128E8ADE8004A0F25 /* Image1View.swift */,
 				D8CEDEE728DEFA39002C992A /* Assets.xcassets */,
 				1816DCA528E8AF38004A0F25 /* moo2.png */,
-				1816DCA328E8AF00004A0F25 /* moo.jpeg */,
+				D8A0575528E4A25E005E0950 /* HeaderBarTitle.swift */,
+				D8CEDEE328DEFA39002C992A /* IOS_Haptics_AppApp.swift */,
 				D8CEDEE928DEFA39002C992A /* Preview Content */,
-				D8A0575928E4BA7E005E0950 /* MenuVIew.swift */,
 			);
 			path = "IOS Haptics App";
 			sourceTree = "<group>";
@@ -252,7 +249,6 @@
 				D8CEDEEB28DEFA39002C992A /* Preview Assets.xcassets in Resources */,
 				1816DCA628E8AF38004A0F25 /* moo2.png in Resources */,
 				D8CEDEE828DEFA39002C992A /* Assets.xcassets in Resources */,
-				1816DCA428E8AF00004A0F25 /* moo.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,7 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8A0575628E4A25E005E0950 /* HeaderBarTitle.swift in Sources */,
-				D8A0575A28E4BA7E005E0950 /* MenuVIew.swift in Sources */,
+				D8A0575A28E4BA7E005E0950 /* MenuView.swift in Sources */,
 				D8A0575828E4A26B005E0950 /* InstructionsView.swift in Sources */,
 				D8CEDEE628DEFA39002C992A /* HomeView.swift in Sources */,
 				1816DCA228E8ADE8004A0F25 /* Image1View.swift in Sources */,
