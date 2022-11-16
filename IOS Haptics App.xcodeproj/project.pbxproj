@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F5A43ED2924B0A400410E2C /* Testing Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5A43EC2924B0A400410E2C /* Testing Haptics.swift */; };
+		0F5A43F42924B59000410E2C /* HelloWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F5A43F22924B59000410E2C /* HelloWorld.cpp */; };
 		1816DCA228E8ADE8004A0F25 /* Image1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1816DCA128E8ADE8004A0F25 /* Image1View.swift */; };
 		1816DCA628E8AF38004A0F25 /* moo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1816DCA528E8AF38004A0F25 /* moo2.png */; };
 		D866DEC528F75E88000DDC24 /* Image2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D866DEC428F75E88000DDC24 /* Image2View.swift */; };
@@ -40,6 +42,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F5A43EC2924B0A400410E2C /* Testing Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Testing Haptics.swift"; sourceTree = "<group>"; };
+		0F5A43EE2924B51000410E2C /* IOS Haptics App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IOS Haptics App-Bridging-Header.h"; sourceTree = "<group>"; };
+		0F5A43F22924B59000410E2C /* HelloWorld.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HelloWorld.cpp; sourceTree = "<group>"; };
+		0F5A43F32924B59000410E2C /* HelloWorld.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HelloWorld.hpp; sourceTree = "<group>"; };
 		1816DCA128E8ADE8004A0F25 /* Image1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image1View.swift; sourceTree = "<group>"; };
 		1816DCA528E8AF38004A0F25 /* moo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = moo2.png; path = ../../../Desktop/moo2.png; sourceTree = "<group>"; };
 		D866DEC428F75E88000DDC24 /* Image2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image2View.swift; sourceTree = "<group>"; };
@@ -116,6 +122,10 @@
 				D8A0575528E4A25E005E0950 /* HeaderBarTitle.swift */,
 				D8CEDEE328DEFA39002C992A /* IOS_Haptics_AppApp.swift */,
 				D8CEDEE928DEFA39002C992A /* Preview Content */,
+				0F5A43EC2924B0A400410E2C /* Testing Haptics.swift */,
+				0F5A43EE2924B51000410E2C /* IOS Haptics App-Bridging-Header.h */,
+				0F5A43F22924B59000410E2C /* HelloWorld.cpp */,
+				0F5A43F32924B59000410E2C /* HelloWorld.hpp */,
 			);
 			path = "IOS Haptics App";
 			sourceTree = "<group>";
@@ -213,6 +223,7 @@
 				TargetAttributes = {
 					D8CEDEDF28DEFA39002C992A = {
 						CreatedOnToolsVersion = 14.0;
+						LastSwiftMigration = 1410;
 					};
 					D8CEDEEF28DEFA39002C992A = {
 						CreatedOnToolsVersion = 14.0;
@@ -278,9 +289,11 @@
 			files = (
 				D8A0575628E4A25E005E0950 /* HeaderBarTitle.swift in Sources */,
 				D8A0575A28E4BA7E005E0950 /* MenuView.swift in Sources */,
+				0F5A43ED2924B0A400410E2C /* Testing Haptics.swift in Sources */,
 				D866DEC528F75E88000DDC24 /* Image2View.swift in Sources */,
 				D8A0575828E4A26B005E0950 /* InstructionsView.swift in Sources */,
 				D8CEDEE628DEFA39002C992A /* HomeView.swift in Sources */,
+				0F5A43F42924B59000410E2C /* HelloWorld.cpp in Sources */,
 				1816DCA228E8ADE8004A0F25 /* Image1View.swift in Sources */,
 				D8CEDEE428DEFA39002C992A /* IOS_Haptics_AppApp.swift in Sources */,
 			);
@@ -438,6 +451,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"IOS Haptics App/Preview Content\"";
@@ -457,6 +471,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "-01.IOS-Haptics-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "IOS Haptics App/IOS Haptics App-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -467,6 +483,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"IOS Haptics App/Preview Content\"";
@@ -486,6 +503,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "-01.IOS-Haptics-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "IOS Haptics App/IOS Haptics App-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
