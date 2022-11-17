@@ -92,6 +92,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F4F8A822925DF90003F83F1 /* include */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
 		D8CEDED728DEFA39002C992A = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +122,7 @@
 		D8CEDEE228DEFA39002C992A /* IOS Haptics App */ = {
 			isa = PBXGroup;
 			children = (
+				0F4F8A822925DF90003F83F1 /* include */,
 				D8CEDEE528DEFA39002C992A /* HomeView.swift */,
 				D8A0575728E4A26B005E0950 /* InstructionsView.swift */,
 				D8A0575928E4BA7E005E0950 /* MenuView.swift */,
