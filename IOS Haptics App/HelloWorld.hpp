@@ -12,7 +12,7 @@
 #include <string>
 
 class HelloWorld {
-public:
+public:	
     std::string sayHello();
 };
 #endif /* HelloWorld_hpp */

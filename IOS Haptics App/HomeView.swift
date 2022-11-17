@@ -12,7 +12,7 @@
         var body: some View {
             NavigationView{
                 VStack (alignment: .center, spacing: 100){
-                    HeaderBarTitle(title: "HAPTICS", size: 40)
+                    HeaderBarTitle(title: HelloWorldWrapper().sayHello(), size: 40)
                         .offset(y:-100)
 
                     NavigationLink(destination: InstructionView()){

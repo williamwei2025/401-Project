@@ -9,6 +9,6 @@
 #include <string>
 
 std::string HelloWorld::sayHello() {
-    return "Hello from CPP world!";
+    return "Haptics!";
 }
 		
