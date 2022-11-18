@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		0F4F8A812925C7E6003F83F1 /* HelloWorldWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0F4F8A802925C7E6003F83F1 /* HelloWorldWrapper.mm */; };
+		0F4F8A842925E4DA003F83F1 /* src in Sources */ = {isa = PBXBuildFile; fileRef = 0F4F8A832925E4DA003F83F1 /* src */; };
+		0F4F8A8B2925E68E003F83F1 /* header in Resources */ = {isa = PBXBuildFile; fileRef = 0F4F8A8A2925E68D003F83F1 /* header */; };
 		0F5A43ED2924B0A400410E2C /* Testing Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5A43EC2924B0A400410E2C /* Testing Haptics.swift */; };
 		0F5A43F42924B59000410E2C /* HelloWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F5A43F22924B59000410E2C /* HelloWorld.cpp */; };
 		1816DCA228E8ADE8004A0F25 /* Image1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1816DCA128E8ADE8004A0F25 /* Image1View.swift */; };
-		1816DCA628E8AF38004A0F25 /* moo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1816DCA528E8AF38004A0F25 /* moo2.png */; };
 		D866DEC528F75E88000DDC24 /* Image2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D866DEC428F75E88000DDC24 /* Image2View.swift */; };
 		D8A0575628E4A25E005E0950 /* HeaderBarTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0575528E4A25E005E0950 /* HeaderBarTitle.swift */; };
 		D8A0575828E4A26B005E0950 /* InstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0575728E4A26B005E0950 /* InstructionsView.swift */; };
@@ -45,12 +46,13 @@
 /* Begin PBXFileReference section */
 		0F4F8A7F2925C58A003F83F1 /* HelloWorldWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldWrapper.h; sourceTree = "<group>"; };
 		0F4F8A802925C7E6003F83F1 /* HelloWorldWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = HelloWorldWrapper.mm; sourceTree = "<group>"; };
+		0F4F8A832925E4DA003F83F1 /* src */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; path = src; sourceTree = "<group>"; };
+		0F4F8A8A2925E68D003F83F1 /* header */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = header; path = "IOS Haptics App/header"; sourceTree = SOURCE_ROOT; };
 		0F5A43EC2924B0A400410E2C /* Testing Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Testing Haptics.swift"; sourceTree = "<group>"; };
 		0F5A43EE2924B51000410E2C /* IOS Haptics App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IOS Haptics App-Bridging-Header.h"; sourceTree = "<group>"; };
 		0F5A43F22924B59000410E2C /* HelloWorld.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HelloWorld.cpp; sourceTree = "<group>"; };
 		0F5A43F32924B59000410E2C /* HelloWorld.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HelloWorld.hpp; sourceTree = "<group>"; };
 		1816DCA128E8ADE8004A0F25 /* Image1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image1View.swift; sourceTree = "<group>"; };
-		1816DCA528E8AF38004A0F25 /* moo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = moo2.png; path = ../../../Desktop/moo2.png; sourceTree = "<group>"; };
 		D866DEC428F75E88000DDC24 /* Image2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image2View.swift; sourceTree = "<group>"; };
 		D8A0575528E4A25E005E0950 /* HeaderBarTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderBarTitle.swift; sourceTree = "<group>"; };
 		D8A0575728E4A26B005E0950 /* InstructionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionsView.swift; sourceTree = "<group>"; };
@@ -92,6 +94,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F4F8A822925DF90003F83F1 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				0F4F8A7F2925C58A003F83F1 /* HelloWorldWrapper.h */,
+				0F5A43F22924B59000410E2C /* HelloWorld.cpp */,
+				0F5A43F32924B59000410E2C /* HelloWorld.hpp */,
+				0F4F8A802925C7E6003F83F1 /* HelloWorldWrapper.mm */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
 		D8CEDED728DEFA39002C992A = {
 			isa = PBXGroup;
 			children = (
@@ -115,22 +128,20 @@
 		D8CEDEE228DEFA39002C992A /* IOS Haptics App */ = {
 			isa = PBXGroup;
 			children = (
-				D8CEDEE528DEFA39002C992A /* HomeView.swift */,
+				0F4F8A8A2925E68D003F83F1 /* header */,
 				D8A0575728E4A26B005E0950 /* InstructionsView.swift */,
+				0F4F8A832925E4DA003F83F1 /* src */,
+				0F4F8A822925DF90003F83F1 /* include */,
+				D8CEDEE528DEFA39002C992A /* HomeView.swift */,
 				D8A0575928E4BA7E005E0950 /* MenuView.swift */,
 				1816DCA128E8ADE8004A0F25 /* Image1View.swift */,
 				D866DEC428F75E88000DDC24 /* Image2View.swift */,
-				D8CEDEE728DEFA39002C992A /* Assets.xcassets */,
-				1816DCA528E8AF38004A0F25 /* moo2.png */,
-				D8A0575528E4A25E005E0950 /* HeaderBarTitle.swift */,
 				D8CEDEE328DEFA39002C992A /* IOS_Haptics_AppApp.swift */,
+				D8A0575528E4A25E005E0950 /* HeaderBarTitle.swift */,
+				D8CEDEE728DEFA39002C992A /* Assets.xcassets */,
 				D8CEDEE928DEFA39002C992A /* Preview Content */,
 				0F5A43EC2924B0A400410E2C /* Testing Haptics.swift */,
 				0F5A43EE2924B51000410E2C /* IOS Haptics App-Bridging-Header.h */,
-				0F5A43F22924B59000410E2C /* HelloWorld.cpp */,
-				0F5A43F32924B59000410E2C /* HelloWorld.hpp */,
-				0F4F8A7F2925C58A003F83F1 /* HelloWorldWrapper.h */,
-				0F4F8A802925C7E6003F83F1 /* HelloWorldWrapper.mm */,
 			);
 			path = "IOS Haptics App";
 			sourceTree = "<group>";
@@ -266,8 +277,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8CEDEEB28DEFA39002C992A /* Preview Assets.xcassets in Resources */,
-				1816DCA628E8AF38004A0F25 /* moo2.png in Resources */,
 				D8CEDEE828DEFA39002C992A /* Assets.xcassets in Resources */,
+				0F4F8A8B2925E68E003F83F1 /* header in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +310,7 @@
 				D866DEC528F75E88000DDC24 /* Image2View.swift in Sources */,
 				D8A0575828E4A26B005E0950 /* InstructionsView.swift in Sources */,
 				D8CEDEE628DEFA39002C992A /* HomeView.swift in Sources */,
+				0F4F8A842925E4DA003F83F1 /* src in Sources */,
 				0F5A43F42924B59000410E2C /* HelloWorld.cpp in Sources */,
 				1816DCA228E8ADE8004A0F25 /* Image1View.swift in Sources */,
 				D8CEDEE428DEFA39002C992A /* IOS_Haptics_AppApp.swift in Sources */,
