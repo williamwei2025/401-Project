@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UIKit
+import CoreHaptics
 
 
 struct Image1View: View {
@@ -25,8 +26,10 @@ struct Image1View: View {
                         .resizable()
                         .scaledToFit()
                         .onTapGesture {
-                            HapticManager.instance.impact(style: .light)
-                            	print("tap detected: light haptic output")
+                            
+                            HapticManager.instance.play();
+                            //HapticManager.instance.impact(style: .light)
+                            	//print("tap detected: light haptic output")
                         }
                         .gesture(drag)
                         .onLongPressGesture(minimumDuration: 0.5, maximumDistance: 10) {
@@ -50,6 +53,8 @@ struct Image1View_Previews: PreviewProvider {
 class HapticManager {
 
     static let instance = HapticManager()
+    
+   
 
     func notification(type: UINotificationFeedbackGenerator.FeedbackType) {
         let generator = UINotificationFeedbackGenerator()
@@ -59,6 +64,26 @@ class HapticManager {
     func impact(style: UIImpactFeedbackGenerator.FeedbackStyle){
         let generator = UIImpactFeedbackGenerator(style: style)
         generator.impactOccurred()
+    }
+    
+    func play(){
+        print("begin")
+        var engine: CHHapticEngine
+        guard let path = Bundle.main.path(forResource: "Test.ahap", ofType: "ahap") else {
+            print("not found")
+            return
+        }        //engine = try CHHapticEngine()
+        // Create and configure a haptic engine.
+        do {
+            engine = try CHHapticEngine()
+            try engine.start()
+            try engine.playPattern(from: URL(fileURLWithPath: path))
+        } catch let error {
+            fatalError("Engine Creation Error: \(error)")
+        }
+        print("end")
+        
+       
     }
     
 }

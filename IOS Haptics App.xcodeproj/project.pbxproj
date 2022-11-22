@@ -47,13 +47,14 @@
 		0F3C74B22927325A00BD40C6 /* AccSynthHashMatrixWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccSynthHashMatrixWrapper.h; sourceTree = "<group>"; };
 		0F3C74B32927325A00BD40C6 /* AccSynthHashMatrixWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AccSynthHashMatrixWrapper.mm; sourceTree = "<group>"; };
 		0F3C74B52927325A00BD40C6 /* AccSynthHashMatrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AccSynthHashMatrix.cpp; sourceTree = "<group>"; };
-		0F3C74B62927325A00BD40C6 /* AccSynthHashMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccSynthHashMatrix.h; sourceTree = "<group>"; };
 		0F4F8A7F2925C58A003F83F1 /* HelloWorldWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldWrapper.h; sourceTree = "<group>"; };
 		0F4F8A802925C7E6003F83F1 /* HelloWorldWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "HelloWorldW\brapper.mm"; sourceTree = "<group>"; };
 		0F5A43EC2924B0A400410E2C /* Testing Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Testing Haptics.swift"; sourceTree = "<group>"; };
 		0F5A43EE2924B51000410E2C /* IOS Haptics App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IOS Haptics App-Bridging-Header.h"; sourceTree = "<group>"; };
 		0F5A43F22924B59000410E2C /* HelloWorld.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HelloWorld.cpp; sourceTree = "<group>"; };
 		0F5A43F32924B59000410E2C /* HelloWorld.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HelloWorld.hpp; sourceTree = "<group>"; };
+		1802F4FA292C8F2900805FCF /* AccSynthHashMatrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AccSynthHashMatrix.h; path = "../../../Documents/401-Project/include/AccSynthHashMatrix.h"; sourceTree = "<group>"; };
+		1802F4FD292C912200805FCF /* Test.ahap.ahap */ = {isa = PBXFileReference; lastKnownFileType = text; path = Test.ahap.ahap; sourceTree = "<group>"; };
 		1816DCA128E8ADE8004A0F25 /* Image1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image1View.swift; sourceTree = "<group>"; };
 		D866DEC428F75E88000DDC24 /* Image2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image2View.swift; sourceTree = "<group>"; };
 		D8A0575528E4A25E005E0950 /* HeaderBarTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderBarTitle.swift; sourceTree = "<group>"; };
@@ -99,8 +100,8 @@
 		0F4F8A822925DF90003F83F1 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				1802F4FA292C8F2900805FCF /* AccSynthHashMatrix.h */,
 				0F3C74B52927325A00BD40C6 /* AccSynthHashMatrix.cpp */,
-				0F3C74B62927325A00BD40C6 /* AccSynthHashMatrix.h */,
 				0F3C74B22927325A00BD40C6 /* AccSynthHashMatrixWrapper.h */,
 				0F3C74B32927325A00BD40C6 /* AccSynthHashMatrixWrapper.mm */,
 				0F5A43F22924B59000410E2C /* HelloWorld.cpp */,
@@ -134,6 +135,7 @@
 		D8CEDEE228DEFA39002C992A /* IOS Haptics App */ = {
 			isa = PBXGroup;
 			children = (
+				1802F4FD292C912200805FCF /* Test.ahap.ahap */,
 				0F4F8A822925DF90003F83F1 /* include */,
 				D8CEDEE528DEFA39002C992A /* HomeView.swift */,
 				D8A0575728E4A26B005E0950 /* InstructionsView.swift */,
