@@ -7,9 +7,17 @@
 
     import SwiftUI
 
-
     struct HomeView: View {
+        
+        init(){
+            let x = AccSynthHashMatrixWrapper().test(3)
+            print(x)
+        }
+
         var body: some View {
+            
+            
+            
             NavigationView{
                 VStack (alignment: .center, spacing: 100){
                     HeaderBarTitle(title: HelloWorldWrapper().sayHello(), size: 40)
