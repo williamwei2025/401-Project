@@ -3,3 +3,4 @@
 //
 
 #import "HelloWorldWrapper.h"
+#import "AccSynthHashMatrixWrapper.h"
