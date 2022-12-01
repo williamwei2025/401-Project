@@ -53,7 +53,6 @@
 		0F5A43EE2924B51000410E2C /* IOS Haptics App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IOS Haptics App-Bridging-Header.h"; sourceTree = "<group>"; };
 		0F5A43F22924B59000410E2C /* HelloWorld.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HelloWorld.cpp; sourceTree = "<group>"; };
 		0F5A43F32924B59000410E2C /* HelloWorld.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HelloWorld.hpp; sourceTree = "<group>"; };
-		1802F4FA292C8F2900805FCF /* AccSynthHashMatrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AccSynthHashMatrix.h; path = "../../../Documents/401-Project/include/AccSynthHashMatrix.h"; sourceTree = "<group>"; };
 		1802F4FD292C912200805FCF /* Test.ahap.ahap */ = {isa = PBXFileReference; lastKnownFileType = text; path = Test.ahap.ahap; sourceTree = "<group>"; };
 		1816DCA128E8ADE8004A0F25 /* Image1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image1View.swift; sourceTree = "<group>"; };
 		D866DEC428F75E88000DDC24 /* Image2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image2View.swift; sourceTree = "<group>"; };
@@ -70,6 +69,7 @@
 		D8CEDEFA28DEFA39002C992A /* IOS Haptics AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "IOS Haptics AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8CEDEFE28DEFA39002C992A /* IOS_Haptics_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOS_Haptics_AppUITests.swift; sourceTree = "<group>"; };
 		D8CEDF0028DEFA39002C992A /* IOS_Haptics_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOS_Haptics_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DF6D9E5D29386AA500D4BDC1 /* AccSynthHashMatrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AccSynthHashMatrix.h; path = ../../../../Downloads/AccSynthHashMatrix.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +100,7 @@
 		0F4F8A822925DF90003F83F1 /* include */ = {
 			isa = PBXGroup;
 			children = (
-				1802F4FA292C8F2900805FCF /* AccSynthHashMatrix.h */,
+				DF6D9E5D29386AA500D4BDC1 /* AccSynthHashMatrix.h */,
 				0F3C74B52927325A00BD40C6 /* AccSynthHashMatrix.cpp */,
 				0F3C74B22927325A00BD40C6 /* AccSynthHashMatrixWrapper.h */,
 				0F3C74B32927325A00BD40C6 /* AccSynthHashMatrixWrapper.mm */,
