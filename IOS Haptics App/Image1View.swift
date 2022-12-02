@@ -15,7 +15,9 @@ struct Image1View: View {
     @State private var offset = CGSize.zero
     @State private var previousDragValue: DragGesture.Value?
     
-    func calcDragVelocity(previousValue: DragGesture.Value, currentValue: DragGesture.Value) -> (Double, Double)? {
+    @State private var currentVelocity: Double?
+    
+    func calcDragVelocity(previousValue: DragGesture.Value, currentValue: DragGesture.Value) -> (Double)? {
             let timeInterval = currentValue.time.timeIntervalSince(previousValue.time)
 
             let diffXInTimeInterval = Double(currentValue.translation.width - previousValue.translation.width)
@@ -23,8 +25,27 @@ struct Image1View: View {
 
             let velocityX = diffXInTimeInterval / timeInterval
             let velocityY = diffYInTimeInterval / timeInterval
-            return (velocityX, velocityY)
+        
+            return sqrt(velocityX * velocityX + velocityY * velocityY)
         }
+    
+    func thread(previousValue: DragGesture.Value, currentValue: DragGesture.Value){
+        let globalQueue = DispatchQueue.global()
+        globalQueue.async {
+            while (true) {
+                currentVelocity = self.calcDragVelocity(previousValue: previousValue, currentValue: currentValue)
+            }
+        }
+    }
+    
+    func secondthread(){
+        let globalQueue = DispatchQueue.global()
+        globalQueue.async {
+            while (true) {
+                print(currentVelocity)
+            }
+        }
+    }
     
     var body: some View {
         Image("moo2")
@@ -35,11 +56,12 @@ struct Image1View: View {
             .gesture(DragGesture(minimumDistance: 10).onChanged({ value in
                 if let previousValue = self.previousDragValue {
                     // calc velocity using currentValue and previousValue
-                    print(self.calcDragVelocity(previousValue: previousValue, currentValue: value))}
+                    thread(previousValue: previousValue, currentValue: value)
+                    secondthread()
+                }
                 // save previous value
                 self.previousDragValue = value
-                
-            }))
+                }))
     }
     /*
     var drag: some Gesture {
@@ -118,3 +140,4 @@ class HapticManager {
     }
     
 }
+        
