@@ -24,6 +24,8 @@
 		D8CEDEF528DEFA39002C992A /* IOS_Haptics_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CEDEF428DEFA39002C992A /* IOS_Haptics_AppTests.swift */; };
 		D8CEDEFF28DEFA39002C992A /* IOS_Haptics_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CEDEFE28DEFA39002C992A /* IOS_Haptics_AppUITests.swift */; };
 		D8CEDF0128DEFA39002C992A /* IOS_Haptics_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CEDF0028DEFA39002C992A /* IOS_Haptics_AppUITestsLaunchTests.swift */; };
+		DF6D9E5F293A045800D4BDC1 /* Test.ahap.ahap in Resources */ = {isa = PBXBuildFile; fileRef = 1802F4FD292C912200805FCF /* Test.ahap.ahap */; };
+		DF6D9E61293A069100D4BDC1 /* Drums.ahap in Resources */ = {isa = PBXBuildFile; fileRef = DF6D9E60293A069100D4BDC1 /* Drums.ahap */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,7 @@
 		D8CEDEFE28DEFA39002C992A /* IOS_Haptics_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOS_Haptics_AppUITests.swift; sourceTree = "<group>"; };
 		D8CEDF0028DEFA39002C992A /* IOS_Haptics_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOS_Haptics_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		DF6D9E5E2939C5DB00D4BDC1 /* AccSynthHashMatrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccSynthHashMatrix.h; sourceTree = "<group>"; };
+		DF6D9E60293A069100D4BDC1 /* Drums.ahap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Drums.ahap; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +138,7 @@
 		D8CEDEE228DEFA39002C992A /* IOS Haptics App */ = {
 			isa = PBXGroup;
 			children = (
+				DF6D9E60293A069100D4BDC1 /* Drums.ahap */,
 				1802F4FD292C912200805FCF /* Test.ahap.ahap */,
 				0F4F8A822925DF90003F83F1 /* include */,
 				D8CEDEE528DEFA39002C992A /* HomeView.swift */,
@@ -283,6 +287,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8CEDEEB28DEFA39002C992A /* Preview Assets.xcassets in Resources */,
+				DF6D9E61293A069100D4BDC1 /* Drums.ahap in Resources */,
+				DF6D9E5F293A045800D4BDC1 /* Test.ahap.ahap in Resources */,
 				D8CEDEE828DEFA39002C992A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

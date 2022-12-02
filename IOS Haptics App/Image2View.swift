@@ -8,6 +8,22 @@
 
 import SwiftUI
 import UIKit
+import CoreHaptics
+
+func playHapticsFile() {
+
+  guard let url = Bundle.main.url(forResource: "Drums", withExtension: "ahap") else {
+    print("could not load file")
+    return
+  }
+  
+  do {
+    let engine = try? CHHapticEngine()
+    try engine?.playPattern(from: url)
+  } catch {
+    print("play error: \(error)")
+  }
+}
 
 
 struct Image2View: View {
@@ -26,7 +42,7 @@ struct Image2View: View {
                         .resizable()
                         .scaledToFit()
                         .onTapGesture {
-                            HapticManager.instance.impact(style: .heavy)
+                            playHapticsFile()
                                 print("picture tapped, haptic output")
                         }
                         .gesture(drag)
