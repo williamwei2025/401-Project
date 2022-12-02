@@ -7,12 +7,36 @@
 
     import SwiftUI
 
+    var x = AccSynthHashMatrixWrapper().test(0)
+
+
     struct HomeView: View {
         
         init(){
-            let x = AccSynthHashMatrixWrapper().test(3)
-            print(x)
+            thread()
+            secondthread()
+            
         }
+        
+        func thread(){
+            let globalQueue = DispatchQueue.global()
+            globalQueue.async {
+                while (true) {
+                    x = AccSynthHashMatrixWrapper().test(x)
+                }
+            }
+        }
+        
+        func secondthread(){
+            let globalQueue = DispatchQueue.global()
+            globalQueue.async {
+                while (true) {
+                    print(x)
+                }
+            }
+        }
+        
+        
 
         var body: some View {
             
