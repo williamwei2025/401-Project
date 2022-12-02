@@ -69,7 +69,7 @@
 		D8CEDEFA28DEFA39002C992A /* IOS Haptics AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "IOS Haptics AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8CEDEFE28DEFA39002C992A /* IOS_Haptics_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOS_Haptics_AppUITests.swift; sourceTree = "<group>"; };
 		D8CEDF0028DEFA39002C992A /* IOS_Haptics_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOS_Haptics_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		DF6D9E5D29386AA500D4BDC1 /* AccSynthHashMatrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AccSynthHashMatrix.h; path = ../../../../Downloads/AccSynthHashMatrix.h; sourceTree = "<group>"; };
+		DF6D9E5E2939C5DB00D4BDC1 /* AccSynthHashMatrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccSynthHashMatrix.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +100,7 @@
 		0F4F8A822925DF90003F83F1 /* include */ = {
 			isa = PBXGroup;
 			children = (
-				DF6D9E5D29386AA500D4BDC1 /* AccSynthHashMatrix.h */,
+				DF6D9E5E2939C5DB00D4BDC1 /* AccSynthHashMatrix.h */,
 				0F3C74B52927325A00BD40C6 /* AccSynthHashMatrix.cpp */,
 				0F3C74B22927325A00BD40C6 /* AccSynthHashMatrixWrapper.h */,
 				0F3C74B32927325A00BD40C6 /* AccSynthHashMatrixWrapper.mm */,
@@ -479,7 +479,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"IOS Haptics App/Preview Content\"";
-				DEVELOPMENT_TEAM = KC75BXWWB2;
+				DEVELOPMENT_TEAM = Q49H5C6L5Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -511,7 +511,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"IOS Haptics App/Preview Content\"";
-				DEVELOPMENT_TEAM = KC75BXWWB2;
+				DEVELOPMENT_TEAM = Q49H5C6L5Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

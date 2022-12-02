@@ -12,6 +12,36 @@ import CoreHaptics
 
 struct Image1View: View {
     
+    @State private var offset = CGSize.zero
+    @State private var previousDragValue: DragGesture.Value?
+    
+    func calcDragVelocity(previousValue: DragGesture.Value, currentValue: DragGesture.Value) -> (Double, Double)? {
+            let timeInterval = currentValue.time.timeIntervalSince(previousValue.time)
+
+            let diffXInTimeInterval = Double(currentValue.translation.width - previousValue.translation.width)
+            let diffYInTimeInterval = Double(currentValue.translation.height - previousValue.translation.height)
+
+            let velocityX = diffXInTimeInterval / timeInterval
+            let velocityY = diffYInTimeInterval / timeInterval
+            return (velocityX, velocityY)
+        }
+    
+    var body: some View {
+        Image("moo2")
+            .resizable()
+            .frame(width: 100, height: 100)
+            .offset(offset)
+            .scaledToFit()
+            .gesture(DragGesture(minimumDistance: 10).onChanged({ value in
+                if let previousValue = self.previousDragValue {
+                    // calc velocity using currentValue and previousValue
+                    print(self.calcDragVelocity(previousValue: previousValue, currentValue: value))}
+                // save previous value
+                self.previousDragValue = value
+                
+            }))
+    }
+    /*
     var drag: some Gesture {
         DragGesture()
             .onChanged { _ in  HapticManager.instance.impact(style: .medium) }
@@ -42,6 +72,7 @@ struct Image1View: View {
             }
 
     }
+     */
 }
 	
 struct Image1View_Previews: PreviewProvider {
