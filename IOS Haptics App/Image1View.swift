@@ -12,9 +12,16 @@ import CoreHaptics
 
 struct Image1View: View {
     
+    init()
+    {
+        print("Start")
+        secondthread();
+    }
+    
     @State private var offset = CGSize.zero
     @State private var previousDragValue: DragGesture.Value?
     
+    @State private var isDrag = false
     @State private var currentVelocity: Double?
     
     func calcDragVelocity(previousValue: DragGesture.Value, currentValue: DragGesture.Value) -> (Double)? {
@@ -30,19 +37,21 @@ struct Image1View: View {
         }
     
     func thread(previousValue: DragGesture.Value, currentValue: DragGesture.Value){
-        let globalQueue = DispatchQueue.global()
-        globalQueue.async {
-            while (true) {
-                currentVelocity = self.calcDragVelocity(previousValue: previousValue, currentValue: currentValue)
-            }
-        }
+        print("In First Thread")
+        currentVelocity = self.calcDragVelocity(previousValue: previousValue, currentValue: currentValue)
+        
     }
     
     func secondthread(){
+        print("In Second Thread")
         let globalQueue = DispatchQueue.global()
         globalQueue.async {
             while (true) {
-                print(currentVelocity)
+                //print(isDrag)
+                
+                if(isDrag){
+                    print(currentVelocity)
+                }
             }
         }
     }
@@ -54,14 +63,19 @@ struct Image1View: View {
             .offset(offset)
             .scaledToFit()
             .gesture(DragGesture(minimumDistance: 10).onChanged({ value in
+                isDrag = true
+                print(isDrag)
                 if let previousValue = self.previousDragValue {
                     // calc velocity using currentValue and previousValue
                     thread(previousValue: previousValue, currentValue: value)
-                    secondthread()
                 }
                 // save previous value
                 self.previousDragValue = value
-                }))
+            }).onEnded({ value in
+                isDrag = false
+                print(isDrag)
+                
+            }))
     }
     /*
     var drag: some Gesture {

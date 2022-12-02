@@ -12,31 +12,6 @@
 
     struct HomeView: View {
         
-        init(){
-            thread()
-            secondthread()
-            
-        }
-        
-        func thread(){
-            let globalQueue = DispatchQueue.global()
-            globalQueue.async {
-                while (true) {
-                    x = AccSynthHashMatrixWrapper().test(x)
-                }
-            }
-        }
-        
-        func secondthread(){
-            let globalQueue = DispatchQueue.global()
-            globalQueue.async {
-                while (true) {
-                    print(x)
-                }
-            }
-        }
-        
-        
 
         var body: some View {
             
