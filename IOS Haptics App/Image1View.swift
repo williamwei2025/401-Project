@@ -15,13 +15,13 @@ struct Image1View: View {
     init()
     {
         print("Start")
+        isDrag = MVar.init();
         secondthread();
     }
     
     @State private var offset = CGSize.zero
     @State private var previousDragValue: DragGesture.Value?
-    
-    @State private var isDrag = false
+    @State private var isDrag = MVar<Any>()
     @State private var currentVelocity: Double?
     
     func calcDragVelocity(previousValue: DragGesture.Value, currentValue: DragGesture.Value) -> (Double)? {
@@ -39,7 +39,6 @@ struct Image1View: View {
     func thread(previousValue: DragGesture.Value, currentValue: DragGesture.Value){
         print("In First Thread")
         currentVelocity = self.calcDragVelocity(previousValue: previousValue, currentValue: currentValue)
-        
     }
     
     func secondthread(){
@@ -47,9 +46,7 @@ struct Image1View: View {
         let globalQueue = DispatchQueue.global()
         globalQueue.async {
             while (true) {
-                //print(isDrag)
-                
-                if(isDrag){
+                if(!isDrag.isEmpty){
                     print(currentVelocity)
                 }
             }
@@ -63,16 +60,16 @@ struct Image1View: View {
             .offset(offset)
             .scaledToFit()
             .gesture(DragGesture(minimumDistance: 10).onChanged({ value in
-                isDrag = true
                 print(isDrag)
                 if let previousValue = self.previousDragValue {
                     // calc velocity using currentValue and previousValue
                     thread(previousValue: previousValue, currentValue: value)
+                    isDrag.tryPut(0)
                 }
                 // save previous value
                 self.previousDragValue = value
             }).onEnded({ value in
-                isDrag = false
+                isDrag.tryTake()
                 print(isDrag)
                 
             }))
