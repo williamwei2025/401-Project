@@ -11,7 +11,15 @@ Report bugs to Heather Culbertson (hculb@seas.upenn.edu, +1 215-573-6748) or Kat
 This code is based on the original TexturePad haptic rendering system designed by Joseph M. Romano.
 ************************************************************************************************************************************/
 
+
+
 #include "AccSynthHashMatrix.h"
+
+#include "shared.h"
+#include "sharedInit.h"
+
+#include <boost/random.hpp>
+#include <boost/random/normal_distribution.hpp>
 
 #include <math.h>
 #include <stdio.h>
@@ -188,7 +196,7 @@ AccSynthHashTable::~AccSynthHashTable()
   Interpolation between models
 ******************************************************************************/
 // method to hash some values and change the appropriate shared memory to reflect this query
-void AccSynthHashTable::HashAndInterp2(float interpSpeed, float interpForce)
+double AccSynthHashTable::HashAndInterp2(float interpSpeed, float interpForce)
 {
     /******************************************************************************
      Visibility-Walk Collision Detection with Delaunay triangulation (to determine
@@ -241,6 +249,10 @@ void AccSynthHashTable::HashAndInterp2(float interpSpeed, float interpForce)
     int numCoeff = hashMap[0].numCoeff; //number of AR coefficients
     int numMACoeff = hashMap[0].numMACoeff; //number of MA coefficients
 
+    coeffNum = numCoeff; // set global variable for number of AR coefficients
+    MAcoeffNum = numMACoeff; //set global variable for number of MA coefficients
+    float mu = hashMap[0].mu; //kinetic friction
+    mu_k = mu; //set global variable for mu
     
     if (interpSpeed>hashMap[0].maxSpeed) //if user's speed is greater than maximum modeled speed, saturate
         interpSpeed = hashMap[0].maxSpeed-0.01; //must be slightly inside convex hull because of rounding errors
@@ -361,6 +373,8 @@ void AccSynthHashTable::HashAndInterp2(float interpSpeed, float interpForce)
             bEnd = true;
         }
     }
+    
+    return vibrations();
 }
 
 int AccSynthHashTable::test(int count)
@@ -368,6 +382,129 @@ int AccSynthHashTable::test(int count)
     count++;
     return count;
 }
+
+double AccSynthHashTable::vibrations()
+{
+    boost::mt19937 rng;
+    std::vector <float> outputHist;
+    std::vector <float> excitationHist;
+    
+    double output = 0.0;
+    double excitation = 0.0;
+    double rgen_mean=0.;
+    boost::mt19937 generator;
+    
+    //Double buffered, if buffer 1:
+    if(SynthesisFlag_Buffer1) {
+        //generate Gaussian random number with power equal to interpolation model variance
+        boost::normal_distribution<> nd(rgen_mean, sqrt(filtVariance_buf1));
+        boost::variate_generator<boost::mt19937&,
+        boost::normal_distribution<> > var_nor(rng, nd);
+        excitation = var_nor();
+        output = 0.0;
+        
+        //if the size of output history is less than the number of AR coefficients, append zeros
+        if(outputHist.size()<(unsigned int) MAX_COEFF) {
+            int subt = MAX_COEFF - outputHist.size();
+            for(int j = 0; j < subt ; j++) {
+                outputHist.push_back(0.0);
+            }
+        }
+        //if the size of excitation history is less than the number of MA coefficients, append zeros
+        if(excitationHist.size()<(unsigned int) MAX_MACOEFF) {
+            int subt = MAX_MACOEFF - excitationHist.size();
+            for(int j = 0; j < subt ; j++) {
+                excitationHist.push_back(0.0);
+            }
+        }
+        
+        //apply AR coefficients to history of output values
+        for(int i = 0; i < coeffNum; i++) {
+            output += outputHist.at(i) * (-filtCoeff_buf1[i]);
+        }
+        //if applicable, also apply MA coefficients to history of excitation values
+        if(isARMA){
+            output += excitation*filtGain_buf1;
+            for(int i = 0; i < MAcoeffNum; i++) {
+                output += excitationHist.at(i) * (filtMACoeff_buf1[i])*filtGain_buf1;
+            }
+            
+            } else{
+            output += excitation;
+        }
+
+        //if the size of output history is greater than the number of AR coefficients, make the extra values zero so we're not storing junk
+        if(outputHist.size()>(unsigned int) coeffNum) {
+            for(unsigned int kk = coeffNum; kk < outputHist.size(); kk++)
+            outputHist.at(kk) = 0.0;
+        }
+        //if the size of excitation history is greater than the number of MA coefficients, make the extra values zero so we're not storing junk
+        if(excitationHist.size()>(unsigned int) MAcoeffNum) {
+            for(unsigned int kk = MAcoeffNum; kk < excitationHist.size(); kk++)
+            excitationHist.at(kk) = 0.0;
+        }
+        
+        } else {//if buffer 2
+        //generate Gaussian random number with power equal to interpolation model variance
+        boost::normal_distribution<> nd(rgen_mean, sqrt(filtVariance_buf2));
+        boost::variate_generator<boost::mt19937&,
+        boost::normal_distribution<> > var_nor(rng, nd);
+        excitation = var_nor();
+        output = 0.0;
+        
+        //if the size of output history is less than the number of AR coefficients, append zeros
+        if(outputHist.size()<(unsigned int) MAX_COEFF) {
+            int subt = MAX_COEFF - outputHist.size();
+            for(int j = 0; j < subt ; j++) {
+                outputHist.push_back(0.0);
+            }
+        }
+        //if the size of excitation history is less than the number of MA coefficients, append zeros
+        if(excitationHist.size()<(unsigned int) MAX_MACOEFF) {
+            int subt = MAX_MACOEFF - excitationHist.size();
+            for(int j = 0; j < subt ; j++) {
+                excitationHist.push_back(0.0);
+            }
+        }
+        
+        //apply AR coefficients to history of output values
+        for(int i = 0; i < coeffNum; i++) {
+            output += outputHist.at(i) * (-filtCoeff_buf2[i]);
+        }
+        //if applicable, also apply MA coefficients to history of excitation values
+        if(isARMA){
+            output += excitation*filtGain_buf2;
+            for(int i = 0; i < MAcoeffNum; i++) {
+                output += excitationHist.at(i) * (filtMACoeff_buf2[i])*filtGain_buf2;
+            }
+            
+            } else{
+            output += excitation;
+        }
+
+        //if the size of output history is greater than the number of AR coefficients, make the extra values zero so we're not storing junk
+        if(outputHist.size()>(unsigned int) coeffNum) {
+            for(unsigned int kk = coeffNum; kk < outputHist.size(); kk++) {
+                outputHist.at(kk) = 0.0;
+            }
+        }
+        //if the size of excitation history is greater than the number of MA coefficients, make the extra values zero so we're not storing junk
+        if(excitationHist.size()>(unsigned int) MAcoeffNum) {
+            for(unsigned int kk = MAcoeffNum; kk < excitationHist.size(); kk++)
+            excitationHist.at(kk) = 0.0;
+        }
+    }
+    
+    // remove the last element of our output vector
+    outputHist.pop_back();
+    excitationHist.pop_back();
+    // push our new ouput value onto the front of our vector stack
+    outputHist.insert(outputHist.begin(),output);
+    excitationHist.insert(excitationHist.begin(),excitation);
+    
+    return output; //this is the output vibration value (in m/s^2)
+}
+
 
 /******************************************************************************
   Return the force hash value BELOW our selected entry (used for placement of
@@ -453,9 +590,9 @@ void AccSynthHashMatrix::AddEntry(AccSynthHashEntry hashEntry, int numMod, float
 /******************************************************************************
   Handles interpolate between models
 ******************************************************************************/
-void AccSynthHashMatrix::HashAndInterp2(int interpSurf, float interpSpeed, float interpForce)
+double AccSynthHashMatrix::HashAndInterp2(int interpSurf, float interpSpeed, float interpForce)
 {
-    hashTable[interpSurf].HashAndInterp2(interpSpeed,interpForce);
+    return hashTable[interpSurf].HashAndInterp2(interpSpeed,interpForce);
 }
 
 

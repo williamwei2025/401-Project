@@ -15,6 +15,10 @@ struct Image1View: View {
     init()
     {
         print("Start")
+        for i in 1...100 {
+            var x = AccSynthHashMatrixWrapper().hashAndInterp2(1, interpSpeed: Float(i), interpForce: 1)
+            print(x)
+        }
         isDrag = MVar.init();
         secondthread();
     }

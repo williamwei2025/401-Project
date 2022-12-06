@@ -12,12 +12,15 @@
 
 @implementation AccSynthHashMatrixWrapper
 
-- (void) HashAndInterp2:(float)interpSpeed interpForce:(float)interpForce {
-    AccSynthHashTable hashTable;
+- (double) HashAndInterp2:(int)interpSurf interpSpeed:(float)interpSpeed interpForce:(float)interpForce {
+    AccSynthHashMatrix hashMatrix;
+    double x = hashMatrix.HashAndInterp2(interpSurf, interpSpeed, interpForce);
+    return x;
 }
 - (int) test:(int)count {
     AccSynthHashTable hashTable;
     int x = hashTable.test(count);
     return x;
 }
+
 @end

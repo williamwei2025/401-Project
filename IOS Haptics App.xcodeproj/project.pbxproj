@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0F3C74B72927325A00BD40C6 /* AccSynthHashMatrixWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0F3C74B32927325A00BD40C6 /* AccSynthHashMatrixWrapper.mm */; };
-		0F3C74B82927325A00BD40C6 /* AccSynthHashMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F3C74B52927325A00BD40C6 /* AccSynthHashMatrix.cpp */; };
 		0F4F8A812925C7E6003F83F1 /* HelloWorldWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0F4F8A802925C7E6003F83F1 /* HelloWorldWrapper.mm */; };
 		0F5A43ED2924B0A400410E2C /* Testing Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5A43EC2924B0A400410E2C /* Testing Haptics.swift */; };
 		0F5A43F42924B59000410E2C /* HelloWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F5A43F22924B59000410E2C /* HelloWorld.cpp */; };
@@ -26,11 +25,10 @@
 		D8CEDF0128DEFA39002C992A /* IOS_Haptics_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CEDF0028DEFA39002C992A /* IOS_Haptics_AppUITestsLaunchTests.swift */; };
 		DF6D9E5F293A045800D4BDC1 /* Test.ahap.ahap in Resources */ = {isa = PBXBuildFile; fileRef = 1802F4FD292C912200805FCF /* Test.ahap.ahap */; };
 		DF6D9E61293A069100D4BDC1 /* Drums.ahap in Resources */ = {isa = PBXBuildFile; fileRef = DF6D9E60293A069100D4BDC1 /* Drums.ahap */; };
-		DF92A8FB293A809C00294011 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF92A8F4293A809B00294011 /* main.cpp */; };
-		DF92A8FC293A809C00294011 /* pugixml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF92A8F5293A809B00294011 /* pugixml.cpp */; };
-		DF92A8FD293A809C00294011 /* helper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF92A8FA293A809C00294011 /* helper.cpp */; };
-		DF92A903293A80B400294011 /* ContactModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF92A901293A80B400294011 /* ContactModel.cpp */; };
-		DF92A90F293AA6F200294011 /* HDU in Resources */ = {isa = PBXBuildFile; fileRef = DF92A90D293AA6F200294011 /* HDU */; };
+		DF92A91D293EABE400294011 /* Mvar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF92A91B293EABE300294011 /* Mvar.swift */; };
+		DF92A91E293EABE400294011 /* MVar.swift.txt in Resources */ = {isa = PBXBuildFile; fileRef = DF92A91C293EABE400294011 /* MVar.swift.txt */; };
+		DF92A91F293EB09700294011 /* AccSynthHashMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F3C74B52927325A00BD40C6 /* AccSynthHashMatrix.cpp */; };
+		DFA382D9293EB9C4005BD716 /* XML in Resources */ = {isa = PBXBuildFile; fileRef = DFA382D8293EB9C4005BD716 /* XML */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,23 +82,12 @@
 		DF92A8F7293A809B00294011 /* pugixml.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = pugixml.hpp; sourceTree = "<group>"; };
 		DF92A8F8293A809B00294011 /* sharedInit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sharedInit.h; sourceTree = "<group>"; };
 		DF92A8F9293A809B00294011 /* shared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shared.h; sourceTree = "<group>"; };
-		DF92A8FA293A809C00294011 /* helper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helper.cpp; sourceTree = "<group>"; };
 		DF92A8FE293A80B400294011 /* autoGenHashMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = autoGenHashMatrix.h; sourceTree = "<group>"; };
-		DF92A8FF293A80B400294011 /* ContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactModel.h; sourceTree = "<group>"; };
 		DF92A900293A80B400294011 /* foreach.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = foreach.hpp; sourceTree = "<group>"; };
-		DF92A901293A80B400294011 /* ContactModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ContactModel.cpp; sourceTree = "<group>"; };
 		DF92A902293A80B400294011 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-		DF92A90D293AA6F200294011 /* HDU */ = {isa = PBXFileReference; lastKnownFileType = folder; path = HDU; sourceTree = "<group>"; };
-		DF92A910293AA86B00294011 /* hdDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hdDefines.h; sourceTree = "<group>"; };
-		DF92A911293AA8D600294011 /* hduVector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hduVector.h; sourceTree = "<group>"; };
-		DF92A912293E9D2800294011 /* hduMatrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hduMatrix.h; sourceTree = "<group>"; };
-		DF92A913293E9D3C00294011 /* hduGenericMatrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hduGenericMatrix.h; sourceTree = "<group>"; };
-		DF92A914293E9D8600294011 /* hduError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hduError.h; sourceTree = "<group>"; };
-		DF92A915293E9DEF00294011 /* hd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hd.h; sourceTree = "<group>"; };
-		DF92A916293E9DEF00294011 /* hdDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hdDevice.h; sourceTree = "<group>"; };
-		DF92A917293E9DEF00294011 /* hdExport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hdExport.h; sourceTree = "<group>"; };
-		DF92A918293E9DEF00294011 /* hdCompilerConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hdCompilerConfig.h; sourceTree = "<group>"; };
-		DF92A919293E9DEF00294011 /* hdScheduler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hdScheduler.h; sourceTree = "<group>"; };
+		DF92A91B293EABE300294011 /* Mvar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mvar.swift; sourceTree = "<group>"; };
+		DF92A91C293EABE400294011 /* MVar.swift.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MVar.swift.txt; sourceTree = "<group>"; };
+		DFA382D8293EB9C4005BD716 /* XML */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XML; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,35 +120,21 @@
 			children = (
 				DF92A8FE293A80B400294011 /* autoGenHashMatrix.h */,
 				DF92A902293A80B400294011 /* Constants.h */,
-				DF92A901293A80B400294011 /* ContactModel.cpp */,
-				DF92A8FF293A80B400294011 /* ContactModel.h */,
 				DF92A900293A80B400294011 /* foreach.hpp */,
-				DF92A8FA293A809C00294011 /* helper.cpp */,
 				DF92A8F4293A809B00294011 /* main.cpp */,
 				DF92A8F6293A809B00294011 /* pugiconfig.hpp */,
 				DF92A8F5293A809B00294011 /* pugixml.cpp */,
 				DF92A8F7293A809B00294011 /* pugixml.hpp */,
 				DF92A8F9293A809B00294011 /* shared.h */,
 				DF92A8F8293A809B00294011 /* sharedInit.h */,
-				DF92A90D293AA6F200294011 /* HDU */,
 				DF6D9E5E2939C5DB00D4BDC1 /* AccSynthHashMatrix.h */,
 				0F3C74B52927325A00BD40C6 /* AccSynthHashMatrix.cpp */,
 				0F3C74B22927325A00BD40C6 /* AccSynthHashMatrixWrapper.h */,
 				0F3C74B32927325A00BD40C6 /* AccSynthHashMatrixWrapper.mm */,
-				0F5A43F22924B59000410E2C /* HelloWorld.cpp */,
 				0F5A43F32924B59000410E2C /* HelloWorld.hpp */,
+				0F5A43F22924B59000410E2C /* HelloWorld.cpp */,
 				0F4F8A7F2925C58A003F83F1 /* HelloWorldWrapper.h */,
 				0F4F8A802925C7E6003F83F1 /* HelloWorldWrapper.mm */,
-				DF92A915293E9DEF00294011 /* hd.h */,
-				DF92A918293E9DEF00294011 /* hdCompilerConfig.h */,
-				DF92A916293E9DEF00294011 /* hdDevice.h */,
-				DF92A917293E9DEF00294011 /* hdExport.h */,
-				DF92A919293E9DEF00294011 /* hdScheduler.h */,
-				DF92A910293AA86B00294011 /* hdDefines.h */,
-				DF92A914293E9D8600294011 /* hduError.h */,
-				DF92A911293AA8D600294011 /* hduVector.h */,
-				DF92A912293E9D2800294011 /* hduMatrix.h */,
-				DF92A913293E9D3C00294011 /* hduGenericMatrix.h */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -189,6 +162,7 @@
 		D8CEDEE228DEFA39002C992A /* IOS Haptics App */ = {
 			isa = PBXGroup;
 			children = (
+				DFA382D8293EB9C4005BD716 /* XML */,
 				DF6D9E60293A069100D4BDC1 /* Drums.ahap */,
 				1802F4FD292C912200805FCF /* Test.ahap.ahap */,
 				0F4F8A822925DF90003F83F1 /* include */,
@@ -199,6 +173,8 @@
 				D866DEC428F75E88000DDC24 /* Image2View.swift */,
 				D8CEDEE328DEFA39002C992A /* IOS_Haptics_AppApp.swift */,
 				D8A0575528E4A25E005E0950 /* HeaderBarTitle.swift */,
+				DF92A91B293EABE300294011 /* Mvar.swift */,
+				DF92A91C293EABE400294011 /* MVar.swift.txt */,
 				D8CEDEE728DEFA39002C992A /* Assets.xcassets */,
 				D8CEDEE928DEFA39002C992A /* Preview Content */,
 				0F5A43EC2924B0A400410E2C /* Testing Haptics.swift */,
@@ -337,9 +313,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFA382D9293EB9C4005BD716 /* XML in Resources */,
 				D8CEDEEB28DEFA39002C992A /* Preview Assets.xcassets in Resources */,
 				DF6D9E61293A069100D4BDC1 /* Drums.ahap in Resources */,
-				DF92A90F293AA6F200294011 /* HDU in Resources */,
+				DF92A91E293EABE400294011 /* MVar.swift.txt in Resources */,
 				DF6D9E5F293A045800D4BDC1 /* Test.ahap.ahap in Resources */,
 				D8CEDEE828DEFA39002C992A /* Assets.xcassets in Resources */,
 			);
@@ -368,20 +345,17 @@
 			files = (
 				D8A0575628E4A25E005E0950 /* HeaderBarTitle.swift in Sources */,
 				D8A0575A28E4BA7E005E0950 /* MenuView.swift in Sources */,
-				DF92A8FD293A809C00294011 /* helper.cpp in Sources */,
 				0F5A43ED2924B0A400410E2C /* Testing Haptics.swift in Sources */,
 				0F4F8A812925C7E6003F83F1 /* HelloWorldWrapper.mm in Sources */,
-				DF92A8FC293A809C00294011 /* pugixml.cpp in Sources */,
 				D866DEC528F75E88000DDC24 /* Image2View.swift in Sources */,
 				D8A0575828E4A26B005E0950 /* InstructionsView.swift in Sources */,
 				D8CEDEE628DEFA39002C992A /* HomeView.swift in Sources */,
 				0F5A43F42924B59000410E2C /* HelloWorld.cpp in Sources */,
+				DF92A91F293EB09700294011 /* AccSynthHashMatrix.cpp in Sources */,
 				1816DCA228E8ADE8004A0F25 /* Image1View.swift in Sources */,
-				0F3C74B82927325A00BD40C6 /* AccSynthHashMatrix.cpp in Sources */,
-				DF92A8FB293A809C00294011 /* main.cpp in Sources */,
 				0F3C74B72927325A00BD40C6 /* AccSynthHashMatrixWrapper.mm in Sources */,
-				DF92A903293A80B400294011 /* ContactModel.cpp in Sources */,
 				D8CEDEE428DEFA39002C992A /* IOS_Haptics_AppApp.swift in Sources */,
+				DF92A91D293EABE400294011 /* Mvar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,6 +442,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				"HEADER_SEARCH_PATHS[arch=*]" = /opt/homebrew/Cellar/boost/1.80.0/include/;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
