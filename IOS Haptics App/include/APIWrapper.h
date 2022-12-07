@@ -10,10 +10,10 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface APIWrapper : NSObject
-- (void *) initialize;
-- (double) output:(void *)object interpSurf:(int)interpSurf interpSpeed:(float)interpSpeed interpForce:(float)interpForce;
+//- (AccSynthHashMatrixWrapper*) initialize;
+//- (double) output:(AccSynthHashMatrixWrapper*)hashMatrix interpSurf:(int)interpSurf interpSpeed:(float)interpSpeed interpForce:(float)interpForce;
+- (double) output:(NSString*)path interpSurf:(int)interpSurf interpSpeed:(float)interpSpeed interpForce:(float)interpForce;
 @end
 
 #endif /* APIWrapper_h */

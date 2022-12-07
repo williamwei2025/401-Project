@@ -31,6 +31,7 @@
 		DFA382D9293EB9C4005BD716 /* XML in Resources */ = {isa = PBXBuildFile; fileRef = DFA382D8293EB9C4005BD716 /* XML */; };
 		DFA382DD29401DE1005BD716 /* API.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFA382DB29401DE1005BD716 /* API.cpp */; };
 		DFA382E1294048B6005BD716 /* pugixml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF92A8F5293A809B00294011 /* pugixml.cpp */; };
+		DFA382E529405B6D005BD716 /* APIWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = DFA382E429405B6D005BD716 /* APIWrapper.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,7 +92,9 @@
 		DF92A91C293EABE400294011 /* MVar.swift.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MVar.swift.txt; sourceTree = "<group>"; };
 		DFA382D8293EB9C4005BD716 /* XML */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XML; sourceTree = "<group>"; };
 		DFA382DB29401DE1005BD716 /* API.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = API.cpp; sourceTree = "<group>"; };
-		DFA382DC29401DE1005BD716 /* API.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = API.hpp; sourceTree = "<group>"; };
+		DFA382E329405AE8005BD716 /* API.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = API.hpp; sourceTree = "<group>"; };
+		DFA382E429405B6D005BD716 /* APIWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = APIWrapper.mm; sourceTree = "<group>"; };
+		DFA382E629405D38005BD716 /* APIWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIWrapper.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,11 +139,13 @@
 				0F3C74B22927325A00BD40C6 /* AccSynthHashMatrixWrapper.h */,
 				0F3C74B32927325A00BD40C6 /* AccSynthHashMatrixWrapper.mm */,
 				0F5A43F32924B59000410E2C /* HelloWorld.hpp */,
-				DFA382DC29401DE1005BD716 /* API.hpp */,
+				DFA382E329405AE8005BD716 /* API.hpp */,
 				0F5A43F22924B59000410E2C /* HelloWorld.cpp */,
 				DFA382DB29401DE1005BD716 /* API.cpp */,
 				0F4F8A7F2925C58A003F83F1 /* HelloWorldWrapper.h */,
+				DFA382E629405D38005BD716 /* APIWrapper.h */,
 				0F4F8A802925C7E6003F83F1 /* HelloWorldWrapper.mm */,
+				DFA382E429405B6D005BD716 /* APIWrapper.mm */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -177,6 +182,7 @@
 				D8A0575928E4BA7E005E0950 /* MenuView.swift */,
 				1816DCA128E8ADE8004A0F25 /* Image1View.swift */,
 				D866DEC428F75E88000DDC24 /* Image2View.swift */,
+				0F5A43EE2924B51000410E2C /* IOS Haptics App-Bridging-Header.h */,
 				D8CEDEE328DEFA39002C992A /* IOS_Haptics_AppApp.swift */,
 				D8A0575528E4A25E005E0950 /* HeaderBarTitle.swift */,
 				DF92A91B293EABE300294011 /* Mvar.swift */,
@@ -184,7 +190,6 @@
 				D8CEDEE728DEFA39002C992A /* Assets.xcassets */,
 				D8CEDEE928DEFA39002C992A /* Preview Content */,
 				0F5A43EC2924B0A400410E2C /* Testing Haptics.swift */,
-				0F5A43EE2924B51000410E2C /* IOS Haptics App-Bridging-Header.h */,
 			);
 			path = "IOS Haptics App";
 			sourceTree = "<group>";
@@ -349,6 +354,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFA382E529405B6D005BD716 /* APIWrapper.mm in Sources */,
 				D8A0575628E4A25E005E0950 /* HeaderBarTitle.swift in Sources */,
 				D8A0575A28E4BA7E005E0950 /* MenuView.swift in Sources */,
 				DFA382E1294048B6005BD716 /* pugixml.cpp in Sources */,

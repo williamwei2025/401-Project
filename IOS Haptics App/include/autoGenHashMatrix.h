@@ -34,7 +34,7 @@ is stored in a hash table for access by other files.
 //#include "sharedMemory.h"
 using namespace std;
 
-AccSynthHashMatrix generateHashMatrix()
+AccSynthHashMatrix generateHashMatrix(const char* path)
 {
 
 AccSynthHashMatrix tempmatrix(NUM_TEX);
@@ -68,10 +68,10 @@ string imFilename;
 //  ssize_t count = readlink( "/proc/self/exe", result,100);
 //filePath = std::string( result, (count > 0) ? count : 0 );
 //string::size_type pos = string(result).find_last_of( "\\/" );
-filePath = "hi";
+filePath = path;
 
 //Find filepath of XML model files
-string baseFilename = filePath + "/XML/Models_";
+string baseFilename = filePath + "XML/Models_";
 string myFilename;
 
 /********* Fill array with known texture names ***********/

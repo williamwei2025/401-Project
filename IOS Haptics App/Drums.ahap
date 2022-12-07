@@ -113,17 +113,6 @@
                     {"ParameterID":"Sustained","ParameterValue":0}
                 ]
             }
-        },
-        {"Event":
-            {
-                "Time":0,
-                "EventType":"AudioCustom",
-                "EventWaveformPath":"AHAP/Drums.wav",
-                "EventParameters":
-                [
-                    {"ParameterID":"AudioVolume","ParameterValue":0.75}
-                ]
-            }
         }
     ]
 }

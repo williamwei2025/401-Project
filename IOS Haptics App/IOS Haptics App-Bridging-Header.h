@@ -4,18 +4,4 @@
 
 #import "HelloWorldWrapper.h"
 #import "AccSynthHashMatrixWrapper.h"
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-    void *initalize();
-    double output(void *object, int interpSurf, float interpSpeed, float interpForce);
-
-#ifdef __cplusplus
-}
-#endif
-
-
-
- 
+#import "APIWrapper.h"

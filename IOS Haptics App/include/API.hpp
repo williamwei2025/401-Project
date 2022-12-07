@@ -10,13 +10,12 @@
 
 #include <stdio.h>
 #include <string>
-#include "AccSynthHashMatrix.h"
-
 
 class API {
 public:
-    void* initialize;
-    double output(void *object, int interpSurf, float interpSpeed, float interpForce);
+    //AccSynthHashMatrix initialize();
+    //double output(int interpSurf, float interpSpeed, float interpForce);
+    double output(const char* path, int interpSurf, float interpSpeed, float interpForce);
 };
 
 

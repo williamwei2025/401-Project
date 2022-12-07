@@ -11,9 +11,15 @@
 
 #import <Foundation/Foundation.h>
 
+
+
 @interface AccSynthHashMatrixWrapper : NSObject
+
 - (void)HashAndInterp2:(int)interpSurf interpSpeed:(float)interpSpeed interpForce:(float)interpForce;
 - (int)test:(int)count;
+
+
+
 @end
 
 #endif /* AccSynthHashMatrixWrapper_h */

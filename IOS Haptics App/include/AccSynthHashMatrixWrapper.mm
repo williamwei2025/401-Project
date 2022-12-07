@@ -1,5 +1,5 @@
 //
-//  AccSynthHashMatrixWrapper.m
+//  AccSynthHashMatrixWrapper.mm
 //  IOS Haptics App
 //
 //  Created by user229725 on 11/16/22.
