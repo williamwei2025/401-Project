@@ -59,9 +59,8 @@ class AccSynthHashTable
         AccSynthHashTable(int surfNum, int numMod, float speedMod[], float forceMod[]);
         ~AccSynthHashTable();	
         void AddEntry(AccSynthHashEntry hashEntry, int numMod, float speedMod[], float forceMod[]);
-        double HashAndInterp2(float interpSpeed, float interpForce);
+        void HashAndInterp2(float interpSpeed, float interpForce);
         int test(int count);
-        double vibrations();
     
 
         AccSynthHashEntry *hashMap;
@@ -77,7 +76,8 @@ class AccSynthHashMatrix
         ~AccSynthHashMatrix();
 	void AddTable(int surfNum, int numMod, float speedMod[], float forceMod[]);
         void AddEntry(AccSynthHashEntry hashEntry, int numMod, float speedMod[], float forceMod[]);
-        double HashAndInterp2(int interpSurf, float interpSpeed, float interpForce);
+        void HashAndInterp2(int interpSurf, float interpSpeed, float interpForce);
+        double vibrations();
 
     
     private:

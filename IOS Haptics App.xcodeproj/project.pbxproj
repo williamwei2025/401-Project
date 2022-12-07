@@ -29,6 +29,8 @@
 		DF92A91E293EABE400294011 /* MVar.swift.txt in Resources */ = {isa = PBXBuildFile; fileRef = DF92A91C293EABE400294011 /* MVar.swift.txt */; };
 		DF92A91F293EB09700294011 /* AccSynthHashMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F3C74B52927325A00BD40C6 /* AccSynthHashMatrix.cpp */; };
 		DFA382D9293EB9C4005BD716 /* XML in Resources */ = {isa = PBXBuildFile; fileRef = DFA382D8293EB9C4005BD716 /* XML */; };
+		DFA382DD29401DE1005BD716 /* API.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFA382DB29401DE1005BD716 /* API.cpp */; };
+		DFA382E1294048B6005BD716 /* pugixml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF92A8F5293A809B00294011 /* pugixml.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,8 @@
 		DF92A91B293EABE300294011 /* Mvar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mvar.swift; sourceTree = "<group>"; };
 		DF92A91C293EABE400294011 /* MVar.swift.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MVar.swift.txt; sourceTree = "<group>"; };
 		DFA382D8293EB9C4005BD716 /* XML */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XML; sourceTree = "<group>"; };
+		DFA382DB29401DE1005BD716 /* API.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = API.cpp; sourceTree = "<group>"; };
+		DFA382DC29401DE1005BD716 /* API.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = API.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,7 +136,9 @@
 				0F3C74B22927325A00BD40C6 /* AccSynthHashMatrixWrapper.h */,
 				0F3C74B32927325A00BD40C6 /* AccSynthHashMatrixWrapper.mm */,
 				0F5A43F32924B59000410E2C /* HelloWorld.hpp */,
+				DFA382DC29401DE1005BD716 /* API.hpp */,
 				0F5A43F22924B59000410E2C /* HelloWorld.cpp */,
+				DFA382DB29401DE1005BD716 /* API.cpp */,
 				0F4F8A7F2925C58A003F83F1 /* HelloWorldWrapper.h */,
 				0F4F8A802925C7E6003F83F1 /* HelloWorldWrapper.mm */,
 			);
@@ -162,9 +168,9 @@
 		D8CEDEE228DEFA39002C992A /* IOS Haptics App */ = {
 			isa = PBXGroup;
 			children = (
-				DFA382D8293EB9C4005BD716 /* XML */,
 				DF6D9E60293A069100D4BDC1 /* Drums.ahap */,
 				1802F4FD292C912200805FCF /* Test.ahap.ahap */,
+				DFA382D8293EB9C4005BD716 /* XML */,
 				0F4F8A822925DF90003F83F1 /* include */,
 				D8CEDEE528DEFA39002C992A /* HomeView.swift */,
 				D8A0575728E4A26B005E0950 /* InstructionsView.swift */,
@@ -345,6 +351,8 @@
 			files = (
 				D8A0575628E4A25E005E0950 /* HeaderBarTitle.swift in Sources */,
 				D8A0575A28E4BA7E005E0950 /* MenuView.swift in Sources */,
+				DFA382E1294048B6005BD716 /* pugixml.cpp in Sources */,
+				DFA382DD29401DE1005BD716 /* API.cpp in Sources */,
 				0F5A43ED2924B0A400410E2C /* Testing Haptics.swift in Sources */,
 				0F4F8A812925C7E6003F83F1 /* HelloWorldWrapper.mm in Sources */,
 				D866DEC528F75E88000DDC24 /* Image2View.swift in Sources */,

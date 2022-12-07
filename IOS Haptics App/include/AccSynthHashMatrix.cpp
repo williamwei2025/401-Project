@@ -196,7 +196,7 @@ AccSynthHashTable::~AccSynthHashTable()
   Interpolation between models
 ******************************************************************************/
 // method to hash some values and change the appropriate shared memory to reflect this query
-double AccSynthHashTable::HashAndInterp2(float interpSpeed, float interpForce)
+void AccSynthHashTable::HashAndInterp2(float interpSpeed, float interpForce)
 {
     /******************************************************************************
      Visibility-Walk Collision Detection with Delaunay triangulation (to determine
@@ -374,7 +374,6 @@ double AccSynthHashTable::HashAndInterp2(float interpSpeed, float interpForce)
         }
     }
     
-    return vibrations();
 }
 
 int AccSynthHashTable::test(int count)
@@ -383,7 +382,7 @@ int AccSynthHashTable::test(int count)
     return count;
 }
 
-double AccSynthHashTable::vibrations()
+double AccSynthHashMatrix::vibrations()
 {
     boost::mt19937 rng;
     std::vector <float> outputHist;
@@ -590,9 +589,9 @@ void AccSynthHashMatrix::AddEntry(AccSynthHashEntry hashEntry, int numMod, float
 /******************************************************************************
   Handles interpolate between models
 ******************************************************************************/
-double AccSynthHashMatrix::HashAndInterp2(int interpSurf, float interpSpeed, float interpForce)
+void AccSynthHashMatrix::HashAndInterp2(int interpSurf, float interpSpeed, float interpForce)
 {
-    return hashTable[interpSurf].HashAndInterp2(interpSpeed,interpForce);
+    hashTable[interpSurf].HashAndInterp2(interpSpeed,interpForce);
 }
 
 

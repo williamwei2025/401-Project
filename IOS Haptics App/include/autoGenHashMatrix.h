@@ -64,15 +64,15 @@ string filePath;
 string imFilename;
 
 //Find filepath of executable
-char result[100];
-  ssize_t count = readlink( "/proc/self/exe", result,100);
-filePath = std::string( result, (count > 0) ? count : 0 );
-string::size_type pos = string(result).find_last_of( "\\/" );
+//char result[100];
+//  ssize_t count = readlink( "/proc/self/exe", result,100);
+//filePath = std::string( result, (count > 0) ? count : 0 );
+//string::size_type pos = string(result).find_last_of( "\\/" );
+filePath = "hi";
 
 //Find filepath of XML model files
-string baseFilename = filePath.substr(0,pos) + "/XML/Models_";
+string baseFilename = filePath + "/XML/Models_";
 string myFilename;
-
 
 /********* Fill array with known texture names ***********/
 // divide textures by group

@@ -12,7 +12,7 @@
 #import <Foundation/Foundation.h>
 
 @interface AccSynthHashMatrixWrapper : NSObject
-- (double)HashAndInterp2:(int)interpSurf interpSpeed:(float)interpSpeed interpForce:(float)interpForce;
+- (void)HashAndInterp2:(int)interpSurf interpSpeed:(float)interpSpeed interpForce:(float)interpForce;
 - (int)test:(int)count;
 @end
 
