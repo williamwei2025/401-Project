@@ -23,6 +23,7 @@
 		D8CEDEF528DEFA39002C992A /* IOS_Haptics_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CEDEF428DEFA39002C992A /* IOS_Haptics_AppTests.swift */; };
 		D8CEDEFF28DEFA39002C992A /* IOS_Haptics_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CEDEFE28DEFA39002C992A /* IOS_Haptics_AppUITests.swift */; };
 		D8CEDF0128DEFA39002C992A /* IOS_Haptics_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CEDF0028DEFA39002C992A /* IOS_Haptics_AppUITestsLaunchTests.swift */; };
+		DF3199B9294198EF00E1A6A5 /* Grass.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DF3199B8294198EF00E1A6A5 /* Grass.jpeg */; };
 		DF6D9E5F293A045800D4BDC1 /* Test.ahap.ahap in Resources */ = {isa = PBXBuildFile; fileRef = 1802F4FD292C912200805FCF /* Test.ahap.ahap */; };
 		DF6D9E61293A069100D4BDC1 /* Drums.ahap in Resources */ = {isa = PBXBuildFile; fileRef = DF6D9E60293A069100D4BDC1 /* Drums.ahap */; };
 		DF92A91D293EABE400294011 /* Mvar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF92A91B293EABE300294011 /* Mvar.swift */; };
@@ -77,6 +78,7 @@
 		D8CEDEFA28DEFA39002C992A /* IOS Haptics AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "IOS Haptics AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8CEDEFE28DEFA39002C992A /* IOS_Haptics_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOS_Haptics_AppUITests.swift; sourceTree = "<group>"; };
 		D8CEDF0028DEFA39002C992A /* IOS_Haptics_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOS_Haptics_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DF3199B8294198EF00E1A6A5 /* Grass.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Grass.jpeg; sourceTree = "<group>"; };
 		DF6D9E5E2939C5DB00D4BDC1 /* AccSynthHashMatrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccSynthHashMatrix.h; sourceTree = "<group>"; };
 		DF6D9E60293A069100D4BDC1 /* Drums.ahap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Drums.ahap; sourceTree = "<group>"; };
 		DF92A8F4293A809B00294011 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				DF92A91B293EABE300294011 /* Mvar.swift */,
 				DF92A91C293EABE400294011 /* MVar.swift.txt */,
 				D8CEDEE728DEFA39002C992A /* Assets.xcassets */,
+				DF3199B8294198EF00E1A6A5 /* Grass.jpeg */,
 				D8CEDEE928DEFA39002C992A /* Preview Content */,
 				0F5A43EC2924B0A400410E2C /* Testing Haptics.swift */,
 			);
@@ -325,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFA382D9293EB9C4005BD716 /* XML in Resources */,
+				DF3199B9294198EF00E1A6A5 /* Grass.jpeg in Resources */,
 				D8CEDEEB28DEFA39002C992A /* Preview Assets.xcassets in Resources */,
 				DF6D9E61293A069100D4BDC1 /* Drums.ahap in Resources */,
 				DF92A91E293EABE400294011 /* MVar.swift.txt in Resources */,

@@ -14,16 +14,30 @@ struct Image1View: View {
 
     @State var param = Parameters()
     @State var engine1 = HapticEngine();
+    @State var playingFile : Data!
     
     init()
     {
-        //print("Start")
-        let url = Bundle.main.resourceURL
-        let path = url?.absoluteString
-        //let swiftString:String = url?.absoluteString
-        //let objCString:NSString = NSString(string:swiftString)
-        //let x = APIWrapper().output(path, interpSurf: 1, interpSpeed: 1.0, interpForce: 1.0)
-        //print(x)
+        print("Start")
+        
+//        guard let path = Bundle.main.path(forResource: "XML/Models_Binder", ofType: "ahap") else {
+//            print("not found")
+//            return
+//        }
+
+        //print(path)
+    
+
+        //let start = CFAbsoluteTimeGetCurrent()
+        
+    
+        APIWrapper().output("test", interpSurf: 1, interpSpeed: 1.0, interpForce: 1.0)
+        
+//            let diff = CFAbsoluteTimeGetCurrent() - start
+//            print("Took \(diff) seconds")
+
+                
+
         engine1.createEngine()
         globalQueueTest()
        
@@ -42,32 +56,43 @@ struct Image1View: View {
     
     func firstthread(){
         
+        
+
+        
         let output = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
         var eps: [EventParameters] = []
         var es : [Events] = []
+        var bridges : [Bridge] = []
 
         for output in output {
-            eps.append(EventParameters(ParameterID: "HapticSharpness", ParameterValue: Float(output)))
+            eps.append(EventParameters(ParameterID: "HapticIntensity", ParameterValue: Float(output)))
         }
         
         var x = 0.0
         for ep in eps {
             var eventparameter = [ep]
-            es.append(Events(Time: Float(x), EventType: "HapticTransient", EventParameters: eventparameter))
+            var b = Bridge(Event: Events(Time: Float(x), EventType: "HapticTransient", EventParameters: eventparameter))
+            //es.append(Events(Time: Float(x), EventType: "HapticTransient", EventParameters: eventparameter))
+            bridges.append(b)
             x += 0.1
         }
         
-        var patterns = Patterns(Event: es)
+
         
-        var afile = AHAPFile(Version: 1, Pattern: patterns)
+        var afile = AHAPFile(Version: 1, Pattern: bridges)
+        
+        print("finished generating")
         
         do {
             let jsonData = try JSONEncoder().encode(afile)
             let jsonString = String(data: jsonData, encoding: .utf8)!
             print(jsonString)
+            
+            playingFile = jsonString.data(using: .utf8)
+            self.engine1.playHapticsData(named: playingFile)
+            
+            print("success")
         } catch { print(error) }
-        
-        
         
     }
     
@@ -79,9 +104,9 @@ struct Image1View: View {
     @State private var previousDragValue: DragGesture.Value?    
     
     var body: some View {
-        Image("moo2")
+        Image("grass")
             .resizable()
-            .frame(width: 100, height: 100)
+            .frame(width: 400, height: 400)
             .offset(offset)
             .scaledToFit()
             .gesture(DragGesture(minimumDistance: 10).onChanged({ value in
@@ -152,11 +177,11 @@ struct Queue<T> {
 
 struct AHAPFile : Codable {
     let Version:Int
-    let Pattern:Patterns
+    let Pattern:[Bridge]
 }
 
-struct Patterns : Codable {
-    let Event: [Events]
+struct Bridge: Codable {
+    let Event: Events
 }
 
 struct Events: Codable {

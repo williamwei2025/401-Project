@@ -26,8 +26,19 @@
 double API::output(const char* path, int interpSurf, float interpSpeed, float interpForce)
 {
     AccSynthHashMatrix hashMatrix = generateHashMatrix(path);
-    hashMatrix.HashAndInterp2(interpSurf, interpSpeed, interpForce);
-    double x = hashMatrix.vibrations();
-    hashMatrix.~AccSynthHashMatrix();
+    
+    
+    double x;
+    
+    for(int i=0; i<300; i++) {
+        hashMatrix.HashAndInterp2(interpSurf, i%2==0?interpSpeed:3, interpForce);
+        
+        x = hashMatrix.vibrations();
+        cout << x << ",";
+    }
+    cout << endl;
+    
+    //hashMatrix.~AccSynthHashMatrix();
     return x;
+
 }

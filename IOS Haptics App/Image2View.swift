@@ -14,13 +14,31 @@ import AVFoundation
 
 struct Image2View: View {
     
-    @State var engine = HapticEngine();
-    
-    init(){
-        engine.createEngine()
-    }
-    
-    
+    @State var engine = HapticEngine()
+//    @State var hapticEngine = try CHHapticEngine()
+//
+//    init(){
+//        engine.createEngine()
+//
+//
+//
+//        do {
+//            // 1. Create a haptic engine instance.
+//            hapticEngine = try CHHapticEngine()
+//
+//            // 2. Start the haptic engine.
+//            try hapticEngine.start()
+//        } catch let error {
+//            print("Engine Error: \(error)")
+//        }
+//
+//        // 3. Stop the engine.
+//        hapticEngine.stop(completionHandler: { (_) -> Void in
+//            // Insert code to call after engine stops.
+//        })
+//
+//    }
+//
     
     var drag: some Gesture {
         DragGesture()
@@ -34,11 +52,11 @@ struct Image2View: View {
         VStack(spacing: 10){
             
                 
-            Image("pork")
+            Image("grass")
                         .resizable()
                         .scaledToFit()
                         .onTapGesture {
-                            engine.playHapticsFile(named: "Drums")
+
                                 print("picture tapped, haptic output")
                             print(engine.x)
                             engine.x = engine.x+1
@@ -130,6 +148,24 @@ class HapticEngine {
 
         } catch { // Engine startup errors
             print("An error occured playing \(filename): \(error).")
+        }
+
+    }
+    
+    
+    func playHapticsData(named data: Data) {
+
+
+        // Express the path to the AHAP file before attempting to load it.
+        do {
+            // Start the engine in case it's idle.
+            try engine?.start()
+
+            // Tell the engine to play a pattern.
+            try engine?.playPattern(from: data)
+
+        } catch { // Engine startup errors
+            print("An error occured playing the data")
         }
 
     }

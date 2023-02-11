@@ -68,7 +68,8 @@ string imFilename;
 //  ssize_t count = readlink( "/proc/self/exe", result,100);
 //filePath = std::string( result, (count > 0) ? count : 0 );
 //string::size_type pos = string(result).find_last_of( "\\/" );
-filePath = path;
+    
+filePath = "/Users/willw/Documents/401-Project/IOS Haptics App/";
 
 //Find filepath of XML model files
 string baseFilename = filePath + "XML/Models_";
@@ -203,6 +204,8 @@ for (int numSurf=0;numSurf<NUM_TEX;numSurf++)
 	pugi::xml_document doc;
 
 	myFilename = baseFilename + texArray[numSurf] + ".xml"; // get full filename of model file
+    
+    //myFilename = "/Users/willw/Documents/401-Project/IOS Haptics App/XML/Models_ABS Plastic.xml";
 	
 	pugi::xml_parse_result result = doc.load_file(myFilename.c_str()); // load model file
 
