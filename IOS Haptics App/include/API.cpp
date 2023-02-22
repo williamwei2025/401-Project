@@ -9,6 +9,9 @@
 #include "API.hpp"
 #include "AccSynthHashMatrix.h"
 #include "autoGenHashMatrix.h"
+#include <iostream>
+#include <tuple>
+
 
 //AccSynthHashMatrix initialize()
 //{
@@ -26,19 +29,27 @@
 double API::output(const char* path, int interpSurf, float interpSpeed, float interpForce)
 {
     AccSynthHashMatrix hashMatrix = generateHashMatrix(path);
+    double x = 0;
+    
+    std::vector <double> outputHist;
+    std::vector <double> excitationHist;
+    double filtCoeff[MAX_COEFF];
+    double filtMACoeff[MAX_COEFF];
+    double filtVariance;
+    double filtGain;
+    int coeffNum;
+    int MAcoeffNum;
     
     
-    double x;
+    tie(coeffNum,MAcoeffNum,filtVariance,filtGain) = hashMatrix.HashAndInterp2(interpSurf, 1, interpForce, filtCoeff, filtMACoeff);
     
-    for(int i=0; i<300; i++) {
-        hashMatrix.HashAndInterp2(interpSurf, i%2==0?interpSpeed:3, interpForce);
-        
-        x = hashMatrix.vibrations();
-        cout << x << ",";
+    for(int i=0; i<600; i++){
+        x = hashMatrix.vibrations(coeffNum,MAcoeffNum,filtVariance, filtGain, filtCoeff, filtMACoeff,outputHist,excitationHist);
+        x += 1;
+        cout << x << ", ";
     }
-    cout << endl;
+    cout << "Finished" << endl;
     
-    //hashMatrix.~AccSynthHashMatrix();
     return x;
 
 }

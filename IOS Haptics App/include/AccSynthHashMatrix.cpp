@@ -24,11 +24,13 @@ This code is based on the original TexturePad haptic rendering system designed b
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <tuple>
 
 #include <iostream>
 #include <complex>
 
 using namespace std;
+boost::mt19937 rng;
 /******************************************************************************
   AccSynthHashEntry default ctor
 ******************************************************************************/
@@ -192,46 +194,41 @@ AccSynthHashTable::~AccSynthHashTable()
     //NOTE! It would have been nice to delete it here, but the delete keyword does not handle nested class deletes nicely enough to trust it
 }
 
-/******************************************************************************
-  Interpolation between models
-******************************************************************************/
-// method to hash some values and change the appropriate shared memory to reflect this query
-void AccSynthHashTable::HashAndInterp2(float interpSpeed, float interpForce)
+tuple<int,int,double,double> AccSynthHashTable::HashAndInterp2(double interpSpeed, double interpForce, double filtCoeff[], double filtMACoeff[])
 {
     /******************************************************************************
-     Visibility-Walk Collision Detection with Delaunay triangulation (to determine
-     which 3 models to interpolate between)
-     
-     This code is based upon the article:
-     O. Devillers, S. Pion, and M. Teillaud. Walking in a triangulation.
-     In Proc. ACM Seventeenth Annual Symposium on Computational Geometry, pages
-     106-114, New York, NY, USA, 2001. ACM.
-     ******************************************************************************/
-    
+        Visibility-Walk Collision Detection with Delaunay triangulation (to determine
+    which 3 models to interpolate between)
+        
+        This code is based upon the article:
+            O. Devillers, S. Pion, and M. Teillaud. Walking in a triangulation.
+    In Proc. ACM Seventeenth Annual Symposium on Computational Geometry, pages
+    106-114, New York, NY, USA, 2001. ACM.
+        ******************************************************************************/
     //Declaration of variables needed in visibility-walk algorithm
-    float px; //x-coordinate (speed) of query point
-    float py; //y-coordinate (force) of query point
-    float VeX; //x-coordinate of vector describing edge of triangle
-    float VeY; //y-coordinate of vector describing edge of triangle
-    float ReX; 
-    float ReY;
-    float tXmid; //x-coordinate of triangle midpoint
-    float tYmid; //y-coordinate of triangle midpoint
-    float VpX;
-    float VpY;
-    float RpX;
-    float RpY;
-    float num;
-    float den;
-    float RintX;
-    float RintY;
-    float dotP1;
-    float dotP2;
-    float length2e;
-    float length2p;
-    float BC1; //Barycentric coordinate for model at vertex 1
-    float BC2; //Barycentric coordinate for model at vertex 2
-    float BC3; //Barycentric coordinate for model at vertex 3
+    double px; //x-coordinate (speed) of query point
+    double py; //y-coordinate (force) of query point
+    double VeX; //x-coordinate of vector describing edge of triangle
+    double VeY; //y-coordinate of vector describing edge of triangle
+    double ReX;
+    double ReY;
+    double tXmid; //x-coordinate of triangle midpoint
+    double tYmid; //y-coordinate of triangle midpoint
+    double VpX;
+    double VpY;
+    double RpX;
+    double RpY;
+    double num;
+    double den;
+    double RintX;
+    double RintY;
+    double dotP1;
+    double dotP2;
+    double length2e;
+    double length2p;
+    double BC1; //Barycentric coordinate for model at vertex 1
+    double BC2; //Barycentric coordinate for model at vertex 2
+    double BC3; //Barycentric coordinate for model at vertex 3
     int ei; //current edge of triangle being checked
     int count;
     int t[3]; //model vertices of current triangle
@@ -244,76 +241,77 @@ void AccSynthHashTable::HashAndInterp2(float interpSpeed, float interpForce)
     bool bEnd = false; //boolean flag to tell code to stop searching for triangle??????
     bool foundTri = false; //boolean flag if model is inside current triangle
     bool foundM = false; //boolean flag if for new triangle to check
-    
+
+    double filtVariance;
+    double filtGain;
+    double filtLSF[MAX_COEFF];
+    double filtMALSF[MAX_MACOEFF];
+
     //Get information about the surface and set global variables
     int numCoeff = hashMap[0].numCoeff; //number of AR coefficients
     int numMACoeff = hashMap[0].numMACoeff; //number of MA coefficients
+     double mu = hashMap[0].mu; //kinetic friction
 
-    coeffNum = numCoeff; // set global variable for number of AR coefficients
-    MAcoeffNum = numMACoeff; //set global variable for number of MA coefficients
-    float mu = hashMap[0].mu; //kinetic friction
-    mu_k = mu; //set global variable for mu
-    
     if (interpSpeed>hashMap[0].maxSpeed) //if user's speed is greater than maximum modeled speed, saturate
         interpSpeed = hashMap[0].maxSpeed-0.01; //must be slightly inside convex hull because of rounding errors
     else if (interpSpeed< 0.05) //set speed to essentially zero for very slow speeds
         interpSpeed = 0.0001;
-    
+
     if (interpForce>hashMap[0].maxForce) //if user's force is greater than maximum modeled force, saturate
         interpForce = hashMap[0].maxForce-0.01; //must be slightly inside conves hull because of rounding errors
-    else if	(interpForce<0.05) //set force to essentially zero for very small force
+    else if    (interpForce<0.05) //set force to essentially zero for very small force
         interpForce = 0.0001;
-    
+
     px = interpSpeed; //user's current speed
     py = interpForce; //user's current force
-    
+
     int qi = 15; // Initial point in Delaunay Triangulation to check
-    
+
     ei = 0; //start searching with edge 0 of triangle
-    
-    count = 1; 
-    
+
+    count = 1;
     while (!bEnd)
     {
         t[0] = hashMap[0].DT1[qi]; //Model numbers for triangle t with index qi, starting at 1
         t[1] = hashMap[0].DT2[qi];
         t[2] = hashMap[0].DT3[qi];
         modn = t[ei]; //first model on edge being checked
+
         if (ei<2) //second model on edge being checked
             modn1 = t[ei+1];
         else
             modn1 = t[0];
-        
+
         //form vector describing edge of triangle
         VeX = hashMap[modn1-1].speed-hashMap[modn-1].speed;
         VeY = hashMap[modn1-1].force-hashMap[modn-1].force;
         ReX = hashMap[modn-1].speed;
         ReY = hashMap[modn-1].force;
-        
+
         //calculate midpoint of triangle
         tXmid = (hashMap[t[0]-1].speed + hashMap[t[1]-1].speed + hashMap[t[2]-1].speed)/3;
         tYmid = (hashMap[t[0]-1].force + hashMap[t[1]-1].force + hashMap[t[2]-1].force)/3;
-        
+
         //form vector from query point to midpoint of triangle T
         VpX = tXmid - px;
         VpY = tYmid - py;
         RpX = px;
         RpY = py;
-        
+
         //Find the point of intersection between line(Vp) and edge (assuming infinite edge length)
         num = (VpX*pow(VeY,2) - VeX*VpY*VeY)*(ReX-RpX) - (VpX*VeX*VeY - pow(VeX,2)*VpY)*(ReY-RpY);
         den = pow((VpX*VeY - VeX*VpY),2);
-        RintX = RpX + num/den*VpX; 
+        RintX = RpX + num/den*VpX;
         RintY = RpY + num/den*VpY;
-        
+
         //Check if the point of intersection lies on line segment of triangle edge
         dotP1 = (RintX-ReX)*VeX + (RintY-ReY)*VeY;
         dotP2 = (RintX-RpX)*VpX + (RintY-RpY)*VpY;
         length2e = pow(VeX,2) + pow(VeY,2);
         length2p = pow(VpX,2) + pow(VpY,2);
-        
+
         if (RpX == RintX && RpY == RintY) //if query point lies on edge
-            foundTri = true;	
+            foundTri = true;
         else if (dotP1>=0 && dotP1<length2e && dotP2>=0 && dotP2<length2p) //if p vector goes through edge ei
         {
             cmod = 0;
@@ -328,15 +326,15 @@ void AccSynthHashTable::HashAndInterp2(float interpSpeed, float interpForce)
                 {
                     if (dt[mod1]==modn && cmod!=qi)
                     {
-                        for (mod2=0;mod2<=2;mod2++)
+                            for (mod2=0;mod2<=2;mod2++)
+                    {
+                                if (dt[mod2]==modn1)
                         {
-                            if (dt[mod2]==modn1)
-                            {
                                 qi = cmod; //new triangle to check
-                                foundM = true;
-                            }
+                            foundM = true;
                         }
-                    }
+                        }
+                   }
                 }
                 cmod++;
                 
@@ -362,18 +360,10 @@ void AccSynthHashTable::HashAndInterp2(float interpSpeed, float interpForce)
             BC1 = ((hashMap[t[1]-1].force-hashMap[t[2]-1].force)*(px-hashMap[t[2]-1].speed) + (hashMap[t[2]-1].speed-hashMap[t[1]-1].speed)*(py-hashMap[t[2]-1].force))/((hashMap[t[1]-1].force-hashMap[t[2]-1].force)*(hashMap[t[0]-1].speed-hashMap[t[2]-1].speed) + (hashMap[t[2]-1].speed-hashMap[t[1]-1].speed)*(hashMap[t[0]-1].force-hashMap[t[2]-1].force));
             BC2 = ((hashMap[t[2]-1].force-hashMap[t[0]-1].force)*(px-hashMap[t[2]-1].speed) + (hashMap[t[0]-1].speed-hashMap[t[2]-1].speed)*(py-hashMap[t[2]-1].force))/((hashMap[t[1]-1].force-hashMap[t[2]-1].force)*(hashMap[t[0]-1].speed-hashMap[t[2]-1].speed) + (hashMap[t[2]-1].speed-hashMap[t[1]-1].speed)*(hashMap[t[0]-1].force-hashMap[t[2]-1].force));
             BC3 = 1.0 - BC1 - BC2;
-            if (BC1<0.0 || BC2<0.0 || BC3<0.0){
-                printf("Speed: %f     Force: %f\n",px,py);
-                printf("BC1: %f      BC2: %f     BC3: %f     \n",BC1,BC2,BC3);}
-            
-            if (BC3 < 0.0){
-                BC3 = 0.0;
-                printf("Unstable!\n");
-            }
             bEnd = true;
         }
     }
-    
+
     /******************************************************************************
     Interpolate AR Line Spectral Frequencies and convert to coefficients
     ******************************************************************************/
@@ -381,7 +371,7 @@ void AccSynthHashTable::HashAndInterp2(float interpSpeed, float interpForce)
     for(int i =0; i< numCoeff; i++)
     {
     filtLSF[i] =((hashMap[t[0]-1].filtLSF[i]) * BC1) + ((hashMap[t[1]-1].filtLSF[i]) * BC2) + ((hashMap[t[2]-1].filtLSF[i]) * BC3);
-
+    
     }
 
     // Turning Line spectral frequencies into coefficients
@@ -396,7 +386,7 @@ void AccSynthHashTable::HashAndInterp2(float interpSpeed, float interpForce)
 
        for(int i =0; i< numCoeff; i++){
 
-            complex<float> mycomplex (0,filtLSF[i]);
+            complex<double> mycomplex (0,filtLSF[i]);
             pAR[i]=exp(mycomplex);// e^i*lsf
 
             if ( i % 2 == 0 ){ // separate the odd index results from the even index results
@@ -407,7 +397,7 @@ void AccSynthHashTable::HashAndInterp2(float interpSpeed, float interpForce)
             }
         }
 
-        //if even number of coefficients
+    //if even number of coefficients
     if ( numCoeff % 2 == 0 ){
             for (int i=numCoeff/2;i<numCoeff;i++){
                 rQ[i]=conj(rQ[i-numCoeff/2]);//add the conjugates of the values to the end of the lists
@@ -526,23 +516,18 @@ void AccSynthHashTable::HashAndInterp2(float interpSpeed, float interpForce)
 
         //Update appropriate buffer with AR coefficients
         for(int i=1; i<=numCoeff; i++){
-            if (SynthesisFlag_Buffer1){
-                filtCoeff_buf2[i-1]=AR[i];
-            }
-            else{
-                filtCoeff_buf1[i-1]=AR[i];
-            }
+            filtCoeff[i-1]=AR[i];
         }
 
-        /******************************************************************************
-        Interpolate MA Line Spectral Frequencies and convert to coefficients (if needed)
-        ******************************************************************************/
+    /******************************************************************************
+    Interpolate MA Line Spectral Frequencies and convert to coefficients (if needed)
+    ******************************************************************************/
     if(isARMA){
         // interpolate the MA LINE SPECTRAL FREQUENCIES
             for(int i =0; i< numMACoeff; i++)
             {
                 filtMALSF[i] =((hashMap[t[0]-1].filtMALSF[i]) * BC1) + ((hashMap[t[1]-1].filtMALSF[i]) * BC2) + ((hashMap[t[2]-1].filtMALSF[i]) * BC3);
-
+    
             }
         //begin transforming MA LSFs to coefficients
         complex<float> pMA[MAX_MACOEFF]; //roots of P
@@ -556,7 +541,7 @@ void AccSynthHashTable::HashAndInterp2(float interpSpeed, float interpForce)
 
            for(int i =0; i< numMACoeff; i++){
 
-            complex<float> mycomplex (0,filtMALSF[i]);
+            complex<double> mycomplex (0,filtMALSF[i]);
             pMA[i]=exp(mycomplex);// e^i*lsf
 
 
@@ -686,39 +671,21 @@ void AccSynthHashTable::HashAndInterp2(float interpSpeed, float interpForce)
 
                 //Update appropriate buffer with AR coefficients
         for(int i=1; i<=numMACoeff; i++){
-            if (SynthesisFlag_Buffer1){
-                filtMACoeff_buf2[i-1]=MA[i];
-            }
-            else{
-                filtMACoeff_buf1[i-1]=MA[i];
-            }
+            filtMACoeff[i-1]=MA[i];
         }
     } //end transforming MA LSFs to coefficients
 
     /******************************************************************************
     Interpolate variance and gain
     ******************************************************************************/
-    // if buffer1 is in use then modify buffer2 (double buffering strategy)
-    if(SynthesisFlag_Buffer1)
-    {
-        // interpolate the variance
-        filtVariance_buf2 = ((hashMap[t[0]-1].variance) * BC1) + ((hashMap[t[1]-1].variance) * BC2) + ((hashMap[t[2]-1].variance) * BC3);
+    // interpolate the variance
+    filtVariance = ((hashMap[t[0]-1].variance) * BC1) + ((hashMap[t[1]-1].variance) * BC2) + ((hashMap[t[2]-1].variance) * BC3);
     if(isARMA) //interpolate the gain if ARMA
-        filtGain_buf2 = ((hashMap[t[0]-1].gain) * BC1) + ((hashMap[t[1]-1].gain) * BC2) + ((hashMap[t[2]-1].gain) * BC3);
-        //flip the flag now that the data is ready
-        SynthesisFlag_Buffer1 = false;
-    }
+        filtGain = ((hashMap[t[0]-1].gain) * BC1) + ((hashMap[t[1]-1].gain) * BC2) + ((hashMap[t[2]-1].gain) * BC3);
 
-    else
-    {
-        // interpolate the variance
-        filtVariance_buf1 = ((hashMap[t[0]-1].variance) * BC1) + ((hashMap[t[1]-1].variance) * BC2) + ((hashMap[t[2]-1].variance) * BC3);
-    if(isARMA) //interpolate gain if ARMA
-            filtGain_buf1 = ((hashMap[t[0]-1].gain) * BC1) + ((hashMap[t[1]-1].gain) * BC2) + ((hashMap[t[2]-1].gain) * BC3);
-        //flip the flag now that the data is ready
-        SynthesisFlag_Buffer1 = true;
-    }
+    return std::make_tuple(numCoeff,numMACoeff,filtVariance,filtGain);
 }
+
 
 int AccSynthHashTable::test(int count)
 {
@@ -726,21 +693,15 @@ int AccSynthHashTable::test(int count)
     return count;
 }
 
-double AccSynthHashMatrix::vibrations()
+double AccSynthHashMatrix::vibrations(int coeffNum, int MAcoeffNum, double filtVariance, double filtGain, double *filtCoeff, double *filtMACoeff, std::vector <double> &outputHist,std::vector <double> &excitationHist)
 {
-    boost::mt19937 rng;
-    std::vector <float> outputHist;
-    std::vector <float> excitationHist;
-    
     double output = 0.0;
     double excitation = 0.0;
     double rgen_mean=0.;
     boost::mt19937 generator;
-    
-    //Double buffered, if buffer 1:
-    if(SynthesisFlag_Buffer1) {
-        //generate Gaussian random number with power equal to interpolation model variance
-        boost::normal_distribution<> nd(rgen_mean, sqrt(filtVariance_buf1));
+
+    //generate Gaussian random number with power equal to interpolation model variance
+        boost::normal_distribution<> nd(rgen_mean, sqrt(filtVariance));
         boost::variate_generator<boost::mt19937&,
         boost::normal_distribution<> > var_nor(rng, nd);
         excitation = var_nor();
@@ -763,13 +724,13 @@ double AccSynthHashMatrix::vibrations()
         
         //apply AR coefficients to history of output values
         for(int i = 0; i < coeffNum; i++) {
-            output += outputHist.at(i) * (-filtCoeff_buf1[i]);
+            output += outputHist.at(i) * (-filtCoeff[i]);
         }
         //if applicable, also apply MA coefficients to history of excitation values
         if(isARMA){
-            output += excitation*filtGain_buf1;
+            output += excitation*filtGain;
             for(int i = 0; i < MAcoeffNum; i++) {
-                output += excitationHist.at(i) * (filtMACoeff_buf1[i])*filtGain_buf1;
+                output += excitationHist.at(i) * (filtMACoeff[i])*filtGain;
             }
             
             } else{
@@ -786,57 +747,6 @@ double AccSynthHashMatrix::vibrations()
             for(unsigned int kk = MAcoeffNum; kk < excitationHist.size(); kk++)
             excitationHist.at(kk) = 0.0;
         }
-        
-        } else {//if buffer 2
-        //generate Gaussian random number with power equal to interpolation model variance
-        boost::normal_distribution<> nd(rgen_mean, sqrt(filtVariance_buf2));
-        boost::variate_generator<boost::mt19937&,
-        boost::normal_distribution<> > var_nor(rng, nd);
-        excitation = var_nor();
-        output = 0.0;
-        
-        //if the size of output history is less than the number of AR coefficients, append zeros
-        if(outputHist.size()<(unsigned int) MAX_COEFF) {
-            int subt = MAX_COEFF - outputHist.size();
-            for(int j = 0; j < subt ; j++) {
-                outputHist.push_back(0.0);
-            }
-        }
-        //if the size of excitation history is less than the number of MA coefficients, append zeros
-        if(excitationHist.size()<(unsigned int) MAX_MACOEFF) {
-            int subt = MAX_MACOEFF - excitationHist.size();
-            for(int j = 0; j < subt ; j++) {
-                excitationHist.push_back(0.0);
-            }
-        }
-        
-        //apply AR coefficients to history of output values
-        for(int i = 0; i < coeffNum; i++) {
-            output += outputHist.at(i) * (-filtCoeff_buf2[i]);
-        }
-        //if applicable, also apply MA coefficients to history of excitation values
-        if(isARMA){
-            output += excitation*filtGain_buf2;
-            for(int i = 0; i < MAcoeffNum; i++) {
-                output += excitationHist.at(i) * (filtMACoeff_buf2[i])*filtGain_buf2;
-            }
-            
-            } else{
-            output += excitation;
-        }
-
-        //if the size of output history is greater than the number of AR coefficients, make the extra values zero so we're not storing junk
-        if(outputHist.size()>(unsigned int) coeffNum) {
-            for(unsigned int kk = coeffNum; kk < outputHist.size(); kk++) {
-                outputHist.at(kk) = 0.0;
-            }
-        }
-        //if the size of excitation history is greater than the number of MA coefficients, make the extra values zero so we're not storing junk
-        if(excitationHist.size()>(unsigned int) MAcoeffNum) {
-            for(unsigned int kk = MAcoeffNum; kk < excitationHist.size(); kk++)
-            excitationHist.at(kk) = 0.0;
-        }
-    }
     
     // remove the last element of our output vector
     outputHist.pop_back();
@@ -933,9 +843,9 @@ void AccSynthHashMatrix::AddEntry(AccSynthHashEntry hashEntry, int numMod, float
 /******************************************************************************
   Handles interpolate between models
 ******************************************************************************/
-void AccSynthHashMatrix::HashAndInterp2(int interpSurf, float interpSpeed, float interpForce)
+std::tuple<int,int,double,double>AccSynthHashMatrix::HashAndInterp2(int interpSurf, float interpSpeed, float interpForce, double filtCoeff[], double filtMACoeff[])
 {
-    hashTable[interpSurf].HashAndInterp2(interpSpeed,interpForce);
+    return hashTable[interpSurf].HashAndInterp2(interpSpeed,interpForce, filtCoeff, filtMACoeff);
 }
 
 

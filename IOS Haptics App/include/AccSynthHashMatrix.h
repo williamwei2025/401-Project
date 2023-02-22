@@ -13,6 +13,7 @@ This code is based on the original TexturePad haptic rendering system designed b
 
 
 #include <math.h>
+#include <tuple>
 
 #ifndef _ACCSYNTHHASHENTRY_H_
 #define _ACCSYNTHHASHENTRY_H_
@@ -59,7 +60,7 @@ class AccSynthHashTable
         AccSynthHashTable(int surfNum, int numMod, float speedMod[], float forceMod[]);
         ~AccSynthHashTable();	
         void AddEntry(AccSynthHashEntry hashEntry, int numMod, float speedMod[], float forceMod[]);
-        void HashAndInterp2(float interpSpeed, float interpForce);
+        std::tuple<int,int,double,double> HashAndInterp2(double interpSpeed, double interpForce, double filtCoeff[], double filtMACoeff[]);
         int test(int count);
     
 
@@ -76,9 +77,8 @@ class AccSynthHashMatrix
         ~AccSynthHashMatrix();
 	void AddTable(int surfNum, int numMod, float speedMod[], float forceMod[]);
         void AddEntry(AccSynthHashEntry hashEntry, int numMod, float speedMod[], float forceMod[]);
-        void HashAndInterp2(int interpSurf, float interpSpeed, float interpForce);
-        double vibrations();
-
+    std::tuple<int,int,double,double> HashAndInterp2(int interpSurf, float interpSpeed, float interpForce, double filtCoeff[], double filtMACoeff[]);
+    double vibrations(int coeffNum, int MAcoeffNum, double filtVariance, double filtGain, double *filtCoeff, double *filtMACoeff, std::vector <double> &outputHist,std::vector <double> &excitationHist);
     
     private:
         AccSynthHashTable *hashTable;
