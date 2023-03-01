@@ -14,31 +14,7 @@ import AVFoundation
 
 struct Image2View: View {
     
-    @State var engine = HapticEngine()
-//    @State var hapticEngine = try CHHapticEngine()
-//
-//    init(){
-//        engine.createEngine()
-//
-//
-//
-//        do {
-//            // 1. Create a haptic engine instance.
-//            hapticEngine = try CHHapticEngine()
-//
-//            // 2. Start the haptic engine.
-//            try hapticEngine.start()
-//        } catch let error {
-//            print("Engine Error: \(error)")
-//        }
-//
-//        // 3. Stop the engine.
-//        hapticEngine.stop(completionHandler: { (_) -> Void in
-//            // Insert code to call after engine stops.
-//        })
-//
-//    }
-//
+
     
     var drag: some Gesture {
         DragGesture()
@@ -56,10 +32,7 @@ struct Image2View: View {
                         .resizable()
                         .scaledToFit()
                         .onTapGesture {
-
                                 print("picture tapped, haptic output")
-                            print(engine.x)
-                            engine.x = engine.x+1
                         }
                         .gesture(drag)
                         .onLongPressGesture(minimumDuration: 0.5, maximumDistance: 10) {
@@ -75,7 +48,6 @@ class HapticEngine {
 
     var engine: CHHapticEngine?
     
-    var x = 5;
 
     func createEngine() {
         // Create and configure a haptic engine.

@@ -12,9 +12,10 @@ import CoreHaptics
 
 struct Image1View: View {
 
-    @State var param = Parameters()
-    @State var engine1 = HapticEngine()
-    @State var playingFile : Data!
+    @State private var offset = CGSize.zero
+    @State private var previousDragValue: DragGesture.Value?
+    @State private var velocity = Float(0)
+    
     let pointer = APIWrapper().generate()
    
     
@@ -23,17 +24,10 @@ struct Image1View: View {
         print("Start")
 
     
-
-        let start = CFAbsoluteTimeGetCurrent()
         
         APIWrapper().output(pointer, interpSurf: 1, interpSpeed: 1.0, interpForce: 1.0)
-        
-        let diff = CFAbsoluteTimeGetCurrent() - start
-        print("Took \(diff) seconds")
-
+    
                 
-
-        engine1.createEngine()
         globalQueueTest()
        
     }
@@ -51,43 +45,8 @@ struct Image1View: View {
     
     func firstthread(){
         
-        
-
-        
         let output = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
-        var eps: [EventParameters] = []
-        var es : [Events] = []
-        var bridges : [Bridge] = []
-
-        for output in output {
-            eps.append(EventParameters(ParameterID: "HapticIntensity", ParameterValue: Float(output)))
-        }
-        
-        var x = 0.0
-        for ep in eps {
-            var eventparameter = [ep]
-            var b = Bridge(Event: Events(Time: Float(x), EventType: "HapticTransient", EventParameters: eventparameter))
-            //es.append(Events(Time: Float(x), EventType: "HapticTransient", EventParameters: eventparameter))
-            bridges.append(b)
-            x += 0.1
-        }
-        
-
-        
-        var afile = AHAPFile(Version: 1, Pattern: bridges)
-        
-        print("finished generating")
-        
-        do {
-            let jsonData = try JSONEncoder().encode(afile)
-            let jsonString = String(data: jsonData, encoding: .utf8)!
-            print(jsonString)
-            
-            playingFile = jsonString.data(using: .utf8)
-            //self.engine1.playHapticsData(named: playingFile)
-            
-            print("success")
-        } catch { print(error) }
+      
         
     }
     
@@ -95,8 +54,7 @@ struct Image1View: View {
         
     }
     
-    @State private var offset = CGSize.zero
-    @State private var previousDragValue: DragGesture.Value?    
+      
     
     var body: some View {
         Image("grass")
@@ -111,8 +69,7 @@ struct Image1View: View {
                 }
                 self.previousDragValue = value
             }).onEnded({ value in
-                self.param.velocity = Float(0)
-                self.param.force = Float(0)
+                velocity = Float(0)
             }))
     }
     
@@ -125,68 +82,11 @@ struct Image1View: View {
             let velocityX = diffXInTimeInterval / timeInterval
             let velocityY = diffYInTimeInterval / timeInterval
         
-            self.param.velocity = Float( sqrt(velocityX * velocityX + velocityY * velocityY) )
-            self.param.force = Float(1)
-        print(self.param.velocity, self.param.force)
+            velocity = Float( sqrt(velocityX * velocityX + velocityY * velocityY) )
+            print(velocity)
     }
 }
 
-class Parameters{
-    
-    var velocity : Float?
-    var force : Float
-    let queue = Queue<Data>()
-    
-    public init()
-    {
-        velocity = 0.0
-        force = 0.0
-    }
-    
-}
-
-struct Queue<T> {
-  private var elements: [T] = []
-
-  mutating func enqueue(_ value: T) {
-    elements.append(value)
-  }
-
-  mutating func dequeue() -> T? {
-    guard !elements.isEmpty else {
-      return nil
-    }
-    return elements.removeFirst()
-  }
-
-  var head: T? {
-    return elements.first
-  }
-
-  var tail: T? {
-    return elements.last
-  }
-}
 
 
-
-struct AHAPFile : Codable {
-    let Version:Int
-    let Pattern:[Bridge]
-}
-
-struct Bridge: Codable {
-    let Event: Events
-}
-
-struct Events: Codable {
-    let Time: Float
-    let EventType: String
-    let EventParameters: [EventParameters]
-}
-
-struct EventParameters : Codable{
-    let ParameterID:String
-    let ParameterValue:Float
-}
 
