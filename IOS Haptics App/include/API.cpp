@@ -13,22 +13,16 @@
 #include <tuple>
 
 
-//AccSynthHashMatrix initialize()
-//{
-//    AccSynthHashMatrix hashmatrix= generateHashMatrix();
-//    return hashmatrix;
-//}
-//
-//double output(AccSynthHashMatrix* hashMatrix, int interpSurf, float interpSpeed, float interpForce)
-//{
-//
-//    hashMatrix->HashAndInterp2(interpSurf, interpSpeed, interpForce);
-//    double x = hashMatrix->vibrations();
-//    return x;
-//}
-double API::output(const char* path, int interpSurf, float interpSpeed, float interpForce)
+void* API::generate()
 {
-    AccSynthHashMatrix hashMatrix = generateHashMatrix(path);
+    static AccSynthHashMatrix hashMatrix = generateHashMatrix("test");
+    void* ptr = &hashMatrix;
+    return ptr;
+}
+
+double API::output(void* ptr, int interpSurf, float interpSpeed, float interpForce)
+{
+    AccSynthHashMatrix* hashMatrix = static_cast<AccSynthHashMatrix*>(ptr);
     double x = 0;
     
     std::vector <double> outputHist;
@@ -41,10 +35,10 @@ double API::output(const char* path, int interpSurf, float interpSpeed, float in
     int MAcoeffNum;
     
     
-    tie(coeffNum,MAcoeffNum,filtVariance,filtGain) = hashMatrix.HashAndInterp2(interpSurf, 1, interpForce, filtCoeff, filtMACoeff);
+    tie(coeffNum,MAcoeffNum,filtVariance,filtGain) = hashMatrix->HashAndInterp2(interpSurf, 1, interpForce, filtCoeff, filtMACoeff);
     
     for(int i=0; i<600; i++){
-        x = hashMatrix.vibrations(coeffNum,MAcoeffNum,filtVariance, filtGain, filtCoeff, filtMACoeff,outputHist,excitationHist);
+        x = hashMatrix->vibrations(coeffNum,MAcoeffNum,filtVariance, filtGain, filtCoeff, filtMACoeff,outputHist,excitationHist);
         x += 1;
         cout << x << ", ";
     }

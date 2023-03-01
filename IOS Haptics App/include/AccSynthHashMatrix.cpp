@@ -522,6 +522,7 @@ tuple<int,int,double,double> AccSynthHashTable::HashAndInterp2(double interpSpee
     /******************************************************************************
     Interpolate MA Line Spectral Frequencies and convert to coefficients (if needed)
     ******************************************************************************/
+    // grace
     if(isARMA){
         // interpolate the MA LINE SPECTRAL FREQUENCIES
             for(int i =0; i< numMACoeff; i++)
@@ -680,6 +681,7 @@ tuple<int,int,double,double> AccSynthHashTable::HashAndInterp2(double interpSpee
     ******************************************************************************/
     // interpolate the variance
     filtVariance = ((hashMap[t[0]-1].variance) * BC1) + ((hashMap[t[1]-1].variance) * BC2) + ((hashMap[t[2]-1].variance) * BC3);
+    // grace
     if(isARMA) //interpolate the gain if ARMA
         filtGain = ((hashMap[t[0]-1].gain) * BC1) + ((hashMap[t[1]-1].gain) * BC2) + ((hashMap[t[2]-1].gain) * BC3);
 
@@ -727,6 +729,7 @@ double AccSynthHashMatrix::vibrations(int coeffNum, int MAcoeffNum, double filtV
             output += outputHist.at(i) * (-filtCoeff[i]);
         }
         //if applicable, also apply MA coefficients to history of excitation values
+    // grace
         if(isARMA){
             output += excitation*filtGain;
             for(int i = 0; i < MAcoeffNum; i++) {

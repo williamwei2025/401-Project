@@ -13,28 +13,23 @@ import CoreHaptics
 struct Image1View: View {
 
     @State var param = Parameters()
-    @State var engine1 = HapticEngine();
+    @State var engine1 = HapticEngine()
     @State var playingFile : Data!
+    let pointer = APIWrapper().generate()
+   
     
     init()
     {
         print("Start")
-        
-//        guard let path = Bundle.main.path(forResource: "XML/Models_Binder", ofType: "ahap") else {
-//            print("not found")
-//            return
-//        }
 
-        //print(path)
     
 
-        //let start = CFAbsoluteTimeGetCurrent()
+        let start = CFAbsoluteTimeGetCurrent()
         
-    
-        APIWrapper().output("test", interpSurf: 1, interpSpeed: 1.0, interpForce: 1.0)
+        APIWrapper().output(pointer, interpSurf: 1, interpSpeed: 1.0, interpForce: 1.0)
         
-//            let diff = CFAbsoluteTimeGetCurrent() - start
-//            print("Took \(diff) seconds")
+        let diff = CFAbsoluteTimeGetCurrent() - start
+        print("Took \(diff) seconds")
 
                 
 
@@ -89,7 +84,7 @@ struct Image1View: View {
             print(jsonString)
             
             playingFile = jsonString.data(using: .utf8)
-            self.engine1.playHapticsData(named: playingFile)
+            //self.engine1.playHapticsData(named: playingFile)
             
             print("success")
         } catch { print(error) }
