@@ -11,7 +11,7 @@
 #import <Foundation/Foundation.h>
 
 @interface APIWrapper : NSObject
-- (double) output:(void*)ptr interpSurf:(int)interpSurf interpSpeed:(float)interpSpeed interpForce:(float)interpForce;
+- (void) output:(void*)ptr sharpnessArray:(float*)sharpnessArray size:(int)size interpSurf:(int)interpSurf interpSpeed:(float)interpSpeed interpForce:(float)interpForce;
 - (void*) generate;
 @end
 

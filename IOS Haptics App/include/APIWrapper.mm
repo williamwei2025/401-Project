@@ -18,9 +18,10 @@
     return ptr;
 }
 
-- (double) output:(void*)ptr interpSurf:(int)interpSurf interpSpeed:(float)interpSpeed interpForce:(float)interpForce {
+- (void) output:(void*)ptr sharpnessArray:(float*)sharpnessArray size:(int)size interpSurf:(int)interpSurf interpSpeed:(float)interpSpeed interpForce:(float)interpForce {
     API api;
-    double x = api.output(ptr, interpSurf, interpSpeed, interpForce);
-    return x;
+    api.output(ptr, sharpnessArray, size, interpSurf, interpSpeed, interpForce);
+    
+    NSLog(@"%f", sharpnessArray[20]);
 }
 @end

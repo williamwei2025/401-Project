@@ -15,7 +15,7 @@ class API {
 public:
     //AccSynthHashMatrix initialize();
     //double output(int interpSurf, float interpSpeed, float interpForce);
-    double output(void* ptr, int interpSurf, float interpSpeed, float interpForce);
+    void output(void* ptr, float* sharpnessArray, int size, int interpSurf, float interpSpeed, float interpForce);
     void* generate();
 };
 

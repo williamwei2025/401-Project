@@ -20,7 +20,7 @@ void* API::generate()
     return ptr;
 }
 
-double API::output(void* ptr, int interpSurf, float interpSpeed, float interpForce)
+void API::output(void* ptr, float* sharpnessArray, int size, int interpSurf, float interpSpeed, float interpForce)
 {
     AccSynthHashMatrix* hashMatrix = static_cast<AccSynthHashMatrix*>(ptr);
     double x = 0;
@@ -37,13 +37,15 @@ double API::output(void* ptr, int interpSurf, float interpSpeed, float interpFor
     
     tie(coeffNum,MAcoeffNum,filtVariance,filtGain) = hashMatrix->HashAndInterp2(interpSurf, 1, interpForce, filtCoeff, filtMACoeff);
     
-    for(int i=0; i<600; i++){
+    for(int i=0; i<size; i++){
         x = hashMatrix->vibrations(coeffNum,MAcoeffNum,filtVariance, filtGain, filtCoeff, filtMACoeff,outputHist,excitationHist);
         x += 1;
-        cout << x << ", ";
+        sharpnessArray[i] = x;
     }
-    cout << "Finished" << endl;
     
-    return x;
+    cout << "API Array" << endl;
+    cout << sharpnessArray[20] << endl;
+
+    
 
 }
