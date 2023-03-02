@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0F3C74B72927325A00BD40C6 /* AccSynthHashMatrixWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0F3C74B32927325A00BD40C6 /* AccSynthHashMatrixWrapper.mm */; };
 		0F5A43ED2924B0A400410E2C /* Testing Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5A43EC2924B0A400410E2C /* Testing Haptics.swift */; };
 		1816DCA228E8ADE8004A0F25 /* Image1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1816DCA128E8ADE8004A0F25 /* Image1View.swift */; };
 		D866DEC528F75E88000DDC24 /* Image2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D866DEC428F75E88000DDC24 /* Image2View.swift */; };
@@ -51,8 +50,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0F3C74B22927325A00BD40C6 /* AccSynthHashMatrixWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccSynthHashMatrixWrapper.h; sourceTree = "<group>"; };
-		0F3C74B32927325A00BD40C6 /* AccSynthHashMatrixWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AccSynthHashMatrixWrapper.mm; sourceTree = "<group>"; };
 		0F3C74B52927325A00BD40C6 /* AccSynthHashMatrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AccSynthHashMatrix.cpp; sourceTree = "<group>"; };
 		0F5A43EC2924B0A400410E2C /* Testing Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Testing Haptics.swift"; sourceTree = "<group>"; };
 		0F5A43EE2924B51000410E2C /* IOS Haptics App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IOS Haptics App-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -132,8 +129,6 @@
 				DF92A8F8293A809B00294011 /* sharedInit.h */,
 				DF6D9E5E2939C5DB00D4BDC1 /* AccSynthHashMatrix.h */,
 				0F3C74B52927325A00BD40C6 /* AccSynthHashMatrix.cpp */,
-				0F3C74B22927325A00BD40C6 /* AccSynthHashMatrixWrapper.h */,
-				0F3C74B32927325A00BD40C6 /* AccSynthHashMatrixWrapper.mm */,
 				DFA382E329405AE8005BD716 /* API.hpp */,
 				DFA382DB29401DE1005BD716 /* API.cpp */,
 				DFA382E629405D38005BD716 /* APIWrapper.h */,
@@ -359,7 +354,6 @@
 				D8CEDEE628DEFA39002C992A /* HomeView.swift in Sources */,
 				DF92A91F293EB09700294011 /* AccSynthHashMatrix.cpp in Sources */,
 				1816DCA228E8ADE8004A0F25 /* Image1View.swift in Sources */,
-				0F3C74B72927325A00BD40C6 /* AccSynthHashMatrixWrapper.mm in Sources */,
 				D8CEDEE428DEFA39002C992A /* IOS_Haptics_AppApp.swift in Sources */,
 				DF92A91D293EABE400294011 /* Mvar.swift in Sources */,
 			);

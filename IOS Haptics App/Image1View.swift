@@ -19,8 +19,7 @@ struct Image1View: View {
     @State private var hm = HapticsManager()
     
     let pointer = APIWrapper().generate()
-    var sharpnessArray = [Float](repeating: 0, count: 600)
-    
+    var sharpnessArray = [Float](repeating: 1, count: 600)
     init()
     {
         print("Start!")
@@ -70,8 +69,8 @@ struct Image1View: View {
             .offset(offset)
             .scaledToFit()
             .onTapGesture {
-                print(sharpnessArray)
-//                hm.playHapticTransient(time: 0, intensity: 1, sharpness: 1, frequency: 300, sharpnessArray: sharpnessArray)
+                //print(sharpnessArray)
+                hm.playHapticTransient(time: 0, intensity: 1, sharpness: 1, frequency: 300, sharpnessArray: sharpnessArray)
             }
             .gesture(DragGesture(minimumDistance: 10).onChanged({ value in
                 if let previousValue = self.previousDragValue {
@@ -161,26 +160,6 @@ class HapticsManager {
         print("ENGINE STARTED")
     }
     
-    /// - Tag: PlayAHAP
-    func playHapticsFile(named filename: String) {
-        
-        
-        // Express the path to the AHAP file before attempting to load it.
-        guard let path = Bundle.main.path(forResource: filename, ofType: "ahap") else {
-            return
-        }
-        
-        do {
-            // Start the engine in case it's idle.
-            try engine?.start()
-            
-            // Tell the engine to play a pattern.
-            try engine?.playPattern(from: URL(fileURLWithPath: path))
-            
-        } catch { // Engine startup errors
-            print("An error occured playing \(filename): \(error).")
-        }
-    }
     
    func playHapticTransient(time: TimeInterval,
                                      intensity: Float,
@@ -193,8 +172,8 @@ class HapticsManager {
         
         
         // Create an event (static) parameter to represent the haptic's sharpness.
-        let sharpnessParameter = CHHapticEventParameter(parameterID: .hapticSharpness,
-                                                        value: sharpness)
+        let intensityParameter = CHHapticEventParameter(parameterID: .hapticIntensity,
+                                                        value: intensity)
         
         
         var events : [CHHapticEvent] = []
@@ -204,7 +183,7 @@ class HapticsManager {
         var freq = 1.0 / Double(frequency)
         for i in 0..<frequency
         {
-            let intensityParameter = CHHapticEventParameter(parameterID: .hapticIntensity,
+            let sharpnessParameter = CHHapticEventParameter(parameterID: .hapticSharpness,
                                                             value: Float(hapticintensities[i]))
             events.append( CHHapticEvent(eventType: .hapticTransient,
                                          parameters: [intensityParameter, sharpnessParameter],
