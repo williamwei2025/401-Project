@@ -184,7 +184,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "2C5ED6B4-93E1-414B-8809-34025B592D12"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IOS Haptics App/include/AccSynthHashMatrix.cpp"
@@ -193,6 +193,22 @@
             startingLineNumber = "274"
             endingLineNumber = "274"
             landmarkName = "AccSynthHashTable::HashAndInterp2(interpSpeed, interpForce, filtCoeff, filtMACoeff)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F2B05319-88F3-45A3-BB20-4882A3F80B3B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IOS Haptics App/Image1View.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
+            landmarkName = "playHapticTransient()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

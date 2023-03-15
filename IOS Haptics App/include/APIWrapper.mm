@@ -22,6 +22,5 @@
     API api;
     api.output(ptr, sharpnessArray, size, interpSurf, interpSpeed, interpForce);
     
-    NSLog(@"%f", sharpnessArray[20]);
 }
 @end

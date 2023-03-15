@@ -43,8 +43,8 @@ void API::output(void* ptr, float* sharpnessArray, int size, int interpSurf, flo
         sharpnessArray[i] = x;
     }
     
-    cout << "API Array" << endl;
-    cout << sharpnessArray[20] << endl;
+    cout << "API Array Generated" << endl;
+    //cout << sharpnessArray[20] << endl;
 
     
 

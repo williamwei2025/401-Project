@@ -10,54 +10,60 @@ import UIKit
 import CoreHaptics
 import AVFoundation
 
+
+
 struct Image1View: View {
 
-    let size = 600
+
     @State private var offset = CGSize.zero
     @State private var previousDragValue: DragGesture.Value?
     @State private var velocity = Float(0)
-    @State private var hm = HapticsManager()
     
+    @State var engine: CHHapticEngine?
+    @State var continuousPlayer: CHHapticAdvancedPatternPlayer!
+    
+    
+    let size = 600
     let pointer = APIWrapper().generate()
-    var sharpnessArray = [Float](repeating: 1, count: 600)
+    let surf = Int32(1)
+    @State var sharpnessArray = [Float](repeating: 1, count: 600)
+    
+    
     init()
     {
-        print("Start!")
-        
-
         print("Creating Engine")
-        hm.createEngine()
-        print("Finished Creating Engine")
+        createEngine()
+        
+//        let filepath = "/Users/willw/Documents/401-Project/IOS Haptics App/XML/Models_Book.xml"
+//        let url = URL(fileURLWithPath: filepath)
+//        let parentdir = url.deletingLastPathComponent()
+//        FileManager.default.changeCurrentDirectoryPath(parentdir.path)
+//        let relativepath = url.lastPathComponent
+//        print("Relative path of file: \(relativepath)")
         
         
+        APIWrapper().output(pointer, sharpnessArray:&sharpnessArray, size:Int32(size), interpSurf: surf, interpSpeed: velocity, interpForce: 1.0)
         
-        APIWrapper().output(pointer, sharpnessArray:&sharpnessArray, size:Int32(size), interpSurf: 1, interpSpeed: 1.0, interpForce: 1.0)
+        
+        globalQueueTest()
     
         
-        print("Array")
-        print(sharpnessArray[20])
-                
-        globalQueueTest()
-       
+           
     }
+    
+    
     
     func globalQueueTest(){
         let globalQueue = DispatchQueue.global()
-        
         globalQueue.async {
             self.firstthread()
-        }
-        globalQueue.async {
-            self.secondthread()
         }
     }
     
     func firstthread(){
-        
-    }
-    
-    func secondthread(){
-        
+         while(true){
+             playHapticTransient()
+         }
     }
     
       
@@ -68,18 +74,16 @@ struct Image1View: View {
             .frame(width: 400, height: 400)
             .offset(offset)
             .scaledToFit()
-            .onTapGesture {
-                //print(sharpnessArray)
-                hm.playHapticTransient(time: 0, intensity: 1, sharpness: 1, frequency: 300, sharpnessArray: sharpnessArray)
-            }
             .gesture(DragGesture(minimumDistance: 10).onChanged({ value in
                 if let previousValue = self.previousDragValue {
                                     // calc velocity using currentValue and previousValue
                 self.calcDragVelocity(previousValue: previousValue, currentValue: value)
                 }
                 self.previousDragValue = value
+                APIWrapper().output(pointer, sharpnessArray:&sharpnessArray, size:Int32(size), interpSurf: surf, interpSpeed: velocity, interpForce: 1.0)
             }).onEnded({ value in
                 velocity = Float(0)
+                APIWrapper().output(pointer, sharpnessArray:&sharpnessArray, size:Int32(size), interpSurf: surf, interpSpeed: velocity, interpForce: 1.0)
             }))
                
     }
@@ -96,14 +100,6 @@ struct Image1View: View {
             velocity = Float( sqrt(velocityX * velocityX + velocityY * velocityY) )
             print(velocity)
     }
-}
-
-
-class HapticsManager {
- 
-    // A haptic engine manages the connection to the haptic server.
-    var engine: CHHapticEngine?
-    
     
     /// - Tag: CreateEngine
     func createEngine() {
@@ -161,33 +157,75 @@ class HapticsManager {
     }
     
     
-   func playHapticTransient(time: TimeInterval,
-                                     intensity: Float,
-                                     sharpness: Float,
-                                     frequency: Int,
-                                     sharpnessArray: [Float]) {
+   func playHapticTransient() {
         
-        
-        // Create an event (static) parameter to represent the haptic's intensity.
-        
-        
-        // Create an event (static) parameter to represent the haptic's sharpness.
+        let freq = 1.0 / Double(300)
         let intensityParameter = CHHapticEventParameter(parameterID: .hapticIntensity,
-                                                        value: intensity)
+                                                        value: Float(1))
         
+        var events : [CHHapticEvent] = []
+        
+       
+       for i in 0..<40 {
+           let startIndex = i*15
+           let endIndex = (i+1)*15 - 1
+           let hapticIntensities = Array(sharpnessArray[startIndex...endIndex])
+           
+           for j in 0..<15 {
+               let sharpnessParameter = CHHapticEventParameter(parameterID: .hapticSharpness,
+                                                               value: Float(hapticIntensities[j]))
+               events.append( CHHapticEvent(eventType: .hapticTransient,
+                                            parameters: [intensityParameter, sharpnessParameter],
+                                            relativeTime: Double(j)*freq))
+           }
+           
+           // Create a pattern from the haptic event.
+           do {
+               
+               // Start the engine in case it's idle.
+               try engine?.start()
+               
+               let pattern = try CHHapticPattern(events: events, parameters: [])
+               
+               // Create a player to play the haptic pattern.
+               let player = try engine?.makePlayer(with: pattern)
+               try player?.start(atTime: CHHapticTimeImmediate) // Play now.
+           } catch let error {
+               print("Error creating a haptic transient pattern: \(error)")
+           }
+       }
+        
+        
+    }
+    
+   
+    
+    /// - Tag: CreateContinuousPattern
+    func playHapticContinuous(time: TimeInterval,
+                                      intensity: Float,
+                                      sharpness: Float,
+                                      frequency: Int,
+                                      sharpnessArray: [Float]) {
+        let intensityParameter = CHHapticEventParameter(parameterID: .hapticIntensity,
+                                                          value: intensity)
+        
+        let sharpnessParameter = CHHapticEventParameter(parameterID: .hapticSharpness,
+                                                          value: sharpness)
         
         var events : [CHHapticEvent] = []
         
         let hapticintensities = sharpnessArray
         
         var freq = 1.0 / Double(frequency)
-        for i in 0..<frequency
+        freq = 1
+        for i in 0..<100
         {
             let sharpnessParameter = CHHapticEventParameter(parameterID: .hapticSharpness,
                                                             value: Float(hapticintensities[i]))
-            events.append( CHHapticEvent(eventType: .hapticTransient,
-                                         parameters: [intensityParameter, sharpnessParameter],
-                                         relativeTime: Double(i)*freq))
+            events.append (CHHapticEvent(eventType: .hapticContinuous,
+                                        parameters: [intensityParameter, sharpnessParameter],
+                                        relativeTime: Double(i)*freq,
+                                         duration: freq ) )
         }
         
         
@@ -199,12 +237,14 @@ class HapticsManager {
             
             let pattern = try CHHapticPattern(events: events, parameters: [])
             
-            // Create a player to play the haptic pattern.
-            let player = try engine?.makePlayer(with: pattern)
-            try player?.start(atTime: CHHapticTimeImmediate) // Play now.
+            continuousPlayer = try engine?.makeAdvancedPlayer(with: pattern)
+            try continuousPlayer?.start(atTime: CHHapticTimeImmediate)
+
         } catch let error {
-            print("Error creating a haptic transient pattern: \(error)")
+            print("Pattern Player Creation Error: \(error)")
         }
     }
     
+    
 }
+
