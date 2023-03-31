@@ -1,20 +1,54 @@
-    //
-    //  HomeView.swift
-    //  IOS Haptics App
-    //
-    //  Created by user228516 on 9/24/22.
-    //
+//
+//  HomeView.swift
+//  IOS Haptics App
+//
+//  Created by user228516 on 9/24/22.
+//
 
-    import SwiftUI
+import SwiftUI
+import CoreHaptics
+import AVFoundation
 
-    struct HomeView: View {
+struct HomeView: View {
+    
+
+    var body: some View {
         
-
-        var body: some View {
+        NavigationView{
             
-            
-            
-            NavigationView{
+            ZStack {
+                // Background color
+                Color.orange.edgesIgnoringSafeArea(.all)
+                
+                // Background pattern
+                VStack {
+                    HStack {
+                        Image(systemName: "star.fill")
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                            .foregroundColor(.white)
+                            .opacity(0.5)
+                        Spacer()
+                    }
+                    Spacer()
+                }
+                .padding(.top, 20)
+                .padding(.leading, 20)
+                
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        Image(systemName: "star.fill")
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                            .foregroundColor(.white)
+                            .opacity(0.5)
+                    }
+                    .padding(.trailing, 20)
+                }
+                .padding(.bottom, 20)
+                
                 VStack (alignment: .center, spacing: 100){
                     HeaderBarTitle(title: "Haptics", size: 40)
                         .offset(y:-100)
@@ -29,17 +63,15 @@
                     }
                 }
             }
-                        
-        }
-
-    }
-
-   
-    
-    
-    struct HomeView_Previews: PreviewProvider {
-        static var previews: some View {
-            HomeView()
+            
         }
     }
+}
+
+
+struct HomeView_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeView()
+    }
+}
 

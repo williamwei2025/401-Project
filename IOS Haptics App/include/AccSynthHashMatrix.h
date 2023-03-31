@@ -14,6 +14,7 @@ This code is based on the original TexturePad haptic rendering system designed b
 
 #include <math.h>
 #include <tuple>
+#include "FileHelper.h"
 
 #ifndef _ACCSYNTHHASHENTRY_H_
 #define _ACCSYNTHHASHENTRY_H_

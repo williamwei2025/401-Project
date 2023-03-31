@@ -46,88 +46,8 @@
             filePath = "IOS Haptics App/include/autoGenHashMatrix.h"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "generateHashMatrix(path)"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "83216888-F0E8-45B7-8B62-F3DDD133AF78"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "IOS Haptics App/Image2View.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
-            landmarkName = "playHapticsData(named:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "DB8B2A9D-D2DF-4509-AF30-F09C6C6E5CEA"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "IOS Haptics App/Image2View.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
-            landmarkName = "playHapticsData(named:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "DB8B2A9D-D2DF-4509-AF30-F09C6C6E5CEA - 5170e900785dca3d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "IOS_Haptics_App.HapticEngine.playHapticsData(named: Foundation.Data) -&gt; ()"
-                  moduleName = "IOS Haptics App"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/willw/Documents/401-Project/IOS%20Haptics%20App/Image2View.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "139"
-                  endingLineNumber = "139"
-                  offsetFromSymbolStart = "428">
-               </Location>
-               <Location
-                  uuid = "DB8B2A9D-D2DF-4509-AF30-F09C6C6E5CEA - 5170e900785dca3d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "IOS_Haptics_App.HapticEngine.playHapticsData(named: Foundation.Data) -&gt; ()"
-                  moduleName = "IOS Haptics App"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/willw/Documents/401-Project/IOS%20Haptics%20App/Image2View.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "139"
-                  endingLineNumber = "139"
-                  offsetFromSymbolStart = "660">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E15F86FA-3936-4C70-8EFA-B89DC462CF90"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "IOS Haptics App/include/autoGenHashMatrix.h"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "generateHashMatrix(path)"
             landmarkType = "9">
          </BreakpointContent>
@@ -142,8 +62,8 @@
             filePath = "IOS Haptics App/include/autoGenHashMatrix.h"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "generateHashMatrix(path)"
             landmarkType = "9">
          </BreakpointContent>
@@ -158,8 +78,8 @@
             filePath = "IOS Haptics App/include/autoGenHashMatrix.h"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "generateHashMatrix(path)"
             landmarkType = "9">
          </BreakpointContent>
@@ -193,22 +113,6 @@
             startingLineNumber = "274"
             endingLineNumber = "274"
             landmarkName = "AccSynthHashTable::HashAndInterp2(interpSpeed, interpForce, filtCoeff, filtMACoeff)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F2B05319-88F3-45A3-BB20-4882A3F80B3B"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "IOS Haptics App/Image1View.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
-            landmarkName = "playHapticTransient()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

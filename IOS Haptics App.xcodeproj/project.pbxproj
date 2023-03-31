@@ -23,6 +23,9 @@
 		DF3199B9294198EF00E1A6A5 /* Grass.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = DF3199B8294198EF00E1A6A5 /* Grass.jpeg */; };
 		DF6D9E5F293A045800D4BDC1 /* Test.ahap.ahap in Resources */ = {isa = PBXBuildFile; fileRef = 1802F4FD292C912200805FCF /* Test.ahap.ahap */; };
 		DF6D9E61293A069100D4BDC1 /* Drums.ahap in Resources */ = {isa = PBXBuildFile; fileRef = DF6D9E60293A069100D4BDC1 /* Drums.ahap */; };
+		DF7C9E0C29D3E6F600959524 /* FileHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7C9E0B29D3E6F600959524 /* FileHelper.m */; };
+		DF7C9E0E29D3EFF500959524 /* autoGenHashMatrix.h in Sources */ = {isa = PBXBuildFile; fileRef = DF92A8FE293A80B400294011 /* autoGenHashMatrix.h */; };
+		DF7C9E0F29D3FB7700959524 /* HomeView.swift in Resources */ = {isa = PBXBuildFile; fileRef = D8CEDEE528DEFA39002C992A /* HomeView.swift */; };
 		DF92A91D293EABE400294011 /* Mvar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF92A91B293EABE300294011 /* Mvar.swift */; };
 		DF92A91E293EABE400294011 /* MVar.swift.txt in Resources */ = {isa = PBXBuildFile; fileRef = DF92A91C293EABE400294011 /* MVar.swift.txt */; };
 		DF92A91F293EB09700294011 /* AccSynthHashMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F3C74B52927325A00BD40C6 /* AccSynthHashMatrix.cpp */; };
@@ -72,6 +75,8 @@
 		DF3199B8294198EF00E1A6A5 /* Grass.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Grass.jpeg; sourceTree = "<group>"; };
 		DF6D9E5E2939C5DB00D4BDC1 /* AccSynthHashMatrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccSynthHashMatrix.h; sourceTree = "<group>"; };
 		DF6D9E60293A069100D4BDC1 /* Drums.ahap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Drums.ahap; sourceTree = "<group>"; };
+		DF7C9E0B29D3E6F600959524 /* FileHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileHelper.m; sourceTree = "<group>"; };
+		DF7C9E0D29D3E71A00959524 /* FileHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileHelper.h; sourceTree = "<group>"; };
 		DF92A8F4293A809B00294011 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		DF92A8F5293A809B00294011 /* pugixml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pugixml.cpp; sourceTree = "<group>"; };
 		DF92A8F6293A809B00294011 /* pugiconfig.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = pugiconfig.hpp; sourceTree = "<group>"; };
@@ -133,6 +138,8 @@
 				DFA382DB29401DE1005BD716 /* API.cpp */,
 				DFA382E629405D38005BD716 /* APIWrapper.h */,
 				DFA382E429405B6D005BD716 /* APIWrapper.mm */,
+				DF7C9E0B29D3E6F600959524 /* FileHelper.m */,
+				DF7C9E0D29D3E71A00959524 /* FileHelper.h */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -312,6 +319,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF7C9E0F29D3FB7700959524 /* HomeView.swift in Resources */,
 				DFA382D9293EB9C4005BD716 /* XML in Resources */,
 				DF3199B9294198EF00E1A6A5 /* Grass.jpeg in Resources */,
 				D8CEDEEB28DEFA39002C992A /* Preview Assets.xcassets in Resources */,
@@ -343,6 +351,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF7C9E0E29D3EFF500959524 /* autoGenHashMatrix.h in Sources */,
 				DFA382E529405B6D005BD716 /* APIWrapper.mm in Sources */,
 				D8A0575628E4A25E005E0950 /* HeaderBarTitle.swift in Sources */,
 				D8A0575A28E4BA7E005E0950 /* MenuView.swift in Sources */,
@@ -354,6 +363,7 @@
 				D8CEDEE628DEFA39002C992A /* HomeView.swift in Sources */,
 				DF92A91F293EB09700294011 /* AccSynthHashMatrix.cpp in Sources */,
 				1816DCA228E8ADE8004A0F25 /* Image1View.swift in Sources */,
+				DF7C9E0C29D3E6F600959524 /* FileHelper.m in Sources */,
 				D8CEDEE428DEFA39002C992A /* IOS_Haptics_AppApp.swift in Sources */,
 				DF92A91D293EABE400294011 /* Mvar.swift in Sources */,
 			);
@@ -529,7 +539,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "-01.IOS-Haptics-App";
+				PRODUCT_BUNDLE_IDENTIFIER = com.401.IOSHapticsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "IOS Haptics App/IOS Haptics App-Bridging-Header.h";
@@ -561,7 +571,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "-01.IOS-Haptics-App";
+				PRODUCT_BUNDLE_IDENTIFIER = com.401.IOSHapticsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "IOS Haptics App/IOS Haptics App-Bridging-Header.h";

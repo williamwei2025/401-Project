@@ -21,11 +21,14 @@ struct HeaderBarTitle: View {
                 .padding(.horizontal, 16)
                 .accessibility(identifier: title)
                 .shadow(radius: 1)
+                .cornerRadius(25)
         }
         .frame(maxWidth: .infinity, maxHeight: 150, alignment: .center)
+        .cornerRadius(25)
         .background(Color.red)
         .offset(y: 0)
     }
+    
 }
 
 struct HeaderBarTitle_Previews: PreviewProvider {

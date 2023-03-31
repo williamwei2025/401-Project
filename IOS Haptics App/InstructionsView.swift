@@ -10,10 +10,41 @@ import SwiftUI
 
 struct InstructionView: View {
     
-    @State private var instructions = "These are the instructions for this app. Click on the menu button to access a list images. You can tap on any image you want for the haptics experience you are looking for."
+    @State private var instructions = "Click on the menu button to access a list textures. Drag or tap the image to experience dynamic haptics."
     
     var body: some View {
-        
+        ZStack {
+            // Background color
+            Color.green.edgesIgnoringSafeArea(.all)
+            
+            // Background pattern
+            VStack {
+                HStack {
+                    Image(systemName: "circle.fill")
+                        .resizable()
+                        .frame(width: 50, height: 50)
+                        .foregroundColor(.white)
+                        .opacity(0.5)
+                    Spacer()
+                }
+                Spacer()
+            }
+            .padding(.top, 10)
+            .padding(.leading, 20)
+            
+            VStack {
+                Spacer()
+                HStack {
+                    Spacer()
+                    Image(systemName: "circle.fill")
+                        .resizable()
+                        .frame(width: 50, height: 50)
+                        .foregroundColor(.white)
+                        .opacity(0.5)
+                }
+                .padding(.trailing, 20)
+            }
+            .padding(.bottom, 20)
             VStack (alignment: .center, spacing: 10){
                 
                 HeaderBarTitle(title: "Instructions", size: 40)
@@ -21,7 +52,7 @@ struct InstructionView: View {
                 
                 Text(instructions)
                     .multilineTextAlignment(.center)
-                    .frame(width: 350, height: 400, alignment: .center)
+                    .frame(width: 350, height: 300, alignment: .center)
                     .background(Color.yellow)
                     .cornerRadius(50)
                     .shadow(radius: 5)
@@ -31,13 +62,13 @@ struct InstructionView: View {
                 NavigationLink(destination: MenuView()){
                     Text("Menu")
                         .frame(width: 150, height: 100, alignment: .center)
-                        .background(Color.blue)
+                        .background(Color.red)
                         .cornerRadius(25)
                         .foregroundColor(Color.white)
                         .font(.system(size: 20, weight: .black, design: .rounded))
                 }
             }
-        
+        }
         
     
 

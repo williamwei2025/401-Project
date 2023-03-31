@@ -69,8 +69,22 @@ string imFilename;
 //filePath = std::string( result, (count > 0) ? count : 0 );
 //string::size_type pos = string(result).find_last_of( "\\/" );
     
-filePath = "/Users/willw/Documents/401-Project/IOS Haptics App/";
+const char *filename = "Drums";
+const char *extension = "ahap";
+const char *fileP = getFilePath(filename, extension);
 
+if (fileP != NULL) {
+    // Use filePath to access the file
+    // Don't forget to free the memory allocated by strdup()
+    filePath = fileP;
+    free((void *)fileP);
+} else {
+    printf("Error: Could not find the file in the app bundle.\n");
+}
+    
+//filePath = "/Users/willw/Documents/401-Project/IOS Haptics App/";
+filePath = filePath.substr(0, filePath.size() - 10);
+    
 //Find filepath of XML model files
 string baseFilename = filePath + "XML/Models_";
 string myFilename;
