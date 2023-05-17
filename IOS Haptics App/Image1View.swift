@@ -13,7 +13,7 @@ import AVFoundation
 var velocity = Float(0)
 let pointer = APIWrapper().generate()
 let size = 600
-var sharpnessArray = [Float](repeating: 1, count: 600)
+var intensityArray = [Float](repeating: 1, count: 600)
 var surf = Int32(1)
 let hm = HapticsManager()
 var running : Bool = false
@@ -45,17 +45,17 @@ struct Image1View: View {
                         self.calcDragVelocity(previousValue: previousValue, currentValue: value)
                     }
                     self.previousDragValue = value
-                    APIWrapper().output(pointer, sharpnessArray:&sharpnessArray, size:Int32(size), interpSurf: surf, interpSpeed: velocity, interpForce: 1.0)
+                    APIWrapper().output(pointer, sharpnessArray:&intensityArray, size:Int32(size), interpSurf: surf, interpSpeed: velocity, interpForce: 1.0)
                 }).onEnded({ value in
                     velocity = Float(0)
-                    APIWrapper().output(pointer, sharpnessArray:&sharpnessArray, size:Int32(size), interpSurf: surf, interpSpeed: velocity, interpForce: 1.0)
+                    APIWrapper().output(pointer, sharpnessArray:&intensityArray, size:Int32(size), interpSurf: surf, interpSpeed: velocity, interpForce: 1.0)
                 }))
         }
         .onAppear {
             print("Creating Engine")
             hm.createEngine()
             surf = Int32(selectedOption)
-            APIWrapper().output(pointer, sharpnessArray:&sharpnessArray, size:Int32(size), interpSurf: surf, interpSpeed: velocity, interpForce: 1.0)
+            APIWrapper().output(pointer, sharpnessArray:&intensityArray, size:Int32(size), interpSurf: surf, interpSpeed: velocity, interpForce: 1.0)
             running = true
             globalQueueTest()
            
@@ -75,7 +75,15 @@ struct Image1View: View {
 
     func firstthread(){
          while(running){
+             let start = DispatchTime.now() // capture the current time
              hm.playHapticTransient()
+             
+             let end = DispatchTime.now() // capture the current time again after your code runs
+             let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds // calculate the difference in nanoseconds
+             let timeInterval = Double(nanoTime) / 1_000_000_000 // convert to mili seconds
+             print("Time taken: \(timeInterval) seconds")
+             
+
          }
     }
     
@@ -160,30 +168,29 @@ class HapticsManager {
    func playHapticTransient() {
 
         let freq = 1.0 / Double(300)
-        let intensityParameter = CHHapticEventParameter(parameterID: .hapticIntensity,
-                                                        value: Float(1))
+        let sharpnessParameter = CHHapticEventParameter(parameterID: .hapticSharpness,
+                                                        value: 0.5)
 
         var events : [CHHapticEvent] = []
 
 
        for i in 0..<40 {
+           
+           let start = DispatchTime.now() // capture the current time
+           
            let startIndex = i*15
            let endIndex = (i+1)*15 - 1
-           let hapticIntensities = Array(sharpnessArray[startIndex...endIndex])
-           print(hapticIntensities[0])
+           let hapticIntensities = Array(intensityArray[startIndex...endIndex])
+           //print(hapticIntensities[0])
 
            for j in 0..<15 {
-               let sharpnessParameter = CHHapticEventParameter(parameterID: .hapticSharpness,
+               let intensityParameter = CHHapticEventParameter(parameterID: .hapticIntensity,
                                                                value: Float(hapticIntensities[j]))
                events.append( CHHapticEvent(eventType: .hapticTransient,
                                             parameters: [intensityParameter, sharpnessParameter],
                                             relativeTime: Double(j)*freq))
            }
 
-           // Create a semaphore to wait for the pattern to finish playing
-            let semaphore = DispatchSemaphore(value: 0)
-           
-           // Create a pattern from the haptic event.
            do {
 
                // Start the engine in case it's idle.
@@ -192,17 +199,27 @@ class HapticsManager {
 
                // Create a player to play the haptic pattern.
                let player = try engine?.makeAdvancedPlayer(with: pattern)
-               player?.completionHandler = { _ in
-                           // Signal the semaphore when the pattern finishes playing
-                           semaphore.signal()
-               }
                try player?.start(atTime: CHHapticTimeImmediate)
                
            } catch let error {
                print("Error creating a haptic transient pattern: \(error)")
            }
            
-           _ = semaphore.wait(timeout: DispatchTime.distantFuture)
+           let end = DispatchTime.now() // capture the current time again after your code runs
+           let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds // calculate the difference in nanoseconds
+           let timeInterval = Double(nanoTime) / 1_000_000_000 // convert to seconds
+
+           
+           usleep(27 * 1000)
+           
+           
+           let newend = DispatchTime.now() // capture the current time again after your code runs
+           let newnanoTime = newend.uptimeNanoseconds - start.uptimeNanoseconds // calculate the difference in nanoseconds
+           let newtimeInterval = Double(newnanoTime) / 1_000_000_000 // convert to seconds
+           //print("Time taken: \(newtimeInterval) seconds")
+           
        }
+       
+       
     }
 }
