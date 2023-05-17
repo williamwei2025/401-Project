@@ -39,13 +39,13 @@ void API::output(void* ptr, float* sharpnessArray, int size, int interpSurf, flo
     
     for(int i=0; i<size; i++){
         x = hashMatrix->vibrations(coeffNum,MAcoeffNum,filtVariance, filtGain, filtCoeff, filtMACoeff,outputHist,excitationHist);
-        x += 1;
+        if(x<0) x *= -1;
+        x = x;
         sharpnessArray[i] = x;
     }
     
     cout << "API Array Generated" << endl;
     cout << sharpnessArray << endl;
 
-    
 
 }

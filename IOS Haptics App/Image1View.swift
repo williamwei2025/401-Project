@@ -17,6 +17,7 @@ var sharpnessArray = [Float](repeating: 1, count: 600)
 var surf = Int32(1)
 let hm = HapticsManager()
 var running : Bool = false
+var count = 0
 
 
 struct Image1View: View {
@@ -57,6 +58,11 @@ struct Image1View: View {
             surf = Int32(selectedOption)
             APIWrapper().output(pointer, sharpnessArray:&sharpnessArray, size:Int32(size), interpSurf: surf, interpSpeed: velocity, interpForce: 1.0)
             running = true
+            
+//            sharpnessArray.forEach { element in
+//                print(element)
+//            }
+
             globalQueueTest()
            
         }
@@ -75,6 +81,7 @@ struct Image1View: View {
 
     func firstthread(){
          while(running){
+             count = 0
              hm.playHapticTransient()
          }
     }
@@ -157,52 +164,50 @@ class HapticsManager {
         engine = nil
     }
 
-   func playHapticTransient() {
 
+    func playHapticTransient() {
         let freq = 1.0 / Double(300)
         let intensityParameter = CHHapticEventParameter(parameterID: .hapticIntensity,
                                                         value: Float(1))
 
         var events : [CHHapticEvent] = []
+        
+        let startIndex = count*15
+        let endIndex = (count+1)*15 - 1
+        let hapticIntensities = Array(sharpnessArray[startIndex...endIndex])
 
+        for j in 0..<15 {
+            let sharpnessParameter = CHHapticEventParameter(parameterID: .hapticSharpness,
+                                                            value: Float(hapticIntensities[j]))
+            events.append( CHHapticEvent(eventType: .hapticTransient,
+                                         parameters: [intensityParameter, sharpnessParameter],
+                                         relativeTime: Double(j)*freq))
+        }
+        
+        // Create a pattern from the haptic event.
+        do {
+            // Start the engine in case it's idle.
+            try engine?.start()
+            let pattern = try CHHapticPattern(events: events, parameters: [])
 
-       for i in 0..<40 {
-           let startIndex = i*15
-           let endIndex = (i+1)*15 - 1
-           let hapticIntensities = Array(sharpnessArray[startIndex...endIndex])
-           print(hapticIntensities[0])
-
-           for j in 0..<15 {
-               let sharpnessParameter = CHHapticEventParameter(parameterID: .hapticSharpness,
-                                                               value: Float(hapticIntensities[j]))
-               events.append( CHHapticEvent(eventType: .hapticTransient,
-                                            parameters: [intensityParameter, sharpnessParameter],
-                                            relativeTime: Double(j)*freq))
-           }
-
-           // Create a semaphore to wait for the pattern to finish playing
-            let semaphore = DispatchSemaphore(value: 0)
-           
-           // Create a pattern from the haptic event.
-           do {
-
-               // Start the engine in case it's idle.
-               try engine?.start()
-               let pattern = try CHHapticPattern(events: events, parameters: [])
-
-               // Create a player to play the haptic pattern.
-               let player = try engine?.makeAdvancedPlayer(with: pattern)
-               player?.completionHandler = { _ in
-                           // Signal the semaphore when the pattern finishes playing
-                           semaphore.signal()
-               }
-               try player?.start(atTime: CHHapticTimeImmediate)
-               
-           } catch let error {
-               print("Error creating a haptic transient pattern: \(error)")
-           }
-           
-           _ = semaphore.wait(timeout: DispatchTime.distantFuture)
-       }
+            // Create a player to play the haptic pattern.
+            let player = try engine?.makeAdvancedPlayer(with: pattern)
+                          
+            try player?.start(atTime: CHHapticTimeImmediate)
+            
+            
+        } catch let error {
+            print("Error creating a haptic transient pattern: \(error)")
+        }
+        
+        count += 1
+        if count < 40 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                self.playHapticTransient()
+            }
+        }
+        else{
+            return
+        }
     }
 }
